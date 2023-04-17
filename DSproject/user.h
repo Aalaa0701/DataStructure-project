@@ -20,45 +20,25 @@ class User
 public:
     // Constructor
     User(string name, string national_id, string password, char gender, int age,
-        string governorate, bool vaccinated = false, bool received_both_doses = false) :
-        name(name), national_id(national_id), password(password), gender(gender), age(age),
-        governorate(governorate), vaccinated(vaccinated), received_both_doses(received_both_doses) {}
+        string governorate, bool vaccinated, bool received_both_doses);
 
     // Getters
-    string get_name() const {
-        return name;
-    }
-    string get_national_id() const {
-        return national_id;
-    }
-    string get_password() const {
-        return password;
-    }
-    char get_gender() const {
-        return gender;
-    }
-    int get_age() const {
-        return age;
-    }
-    string get_governorate() const {
-        return governorate;
-    }
-    bool is_vaccinated() const {
-        return vaccinated;
-    }
-    bool has_received_both_doses() const {
-        return received_both_doses;
-    }
-
+    string get_name() const;
+    string get_national_id() const;
+    string get_password() const;
+    char get_gender() const;
+    int get_age() const;
+    string get_governorate() const;
+    bool is_vaccinated() const;
+    bool has_received_both_doses() const;
     // Setters
-    void set_vaccinated(bool vaccinated) {
-        this->vaccinated = vaccinated;
-    }
-    void set_received_both_doses(bool received_both_doses) {
-        this->received_both_doses = received_both_doses;
-    }
+    void set_vaccinated(bool vaccinated);
+    void set_received_both_doses(bool received_both_doses);
+    //Functions
 
-
+    //Edit user data
+    void EditUserData(int index, int whichData, vector<User>& firstDose, vector<User>& secondDose);
+    void deleteUser(int index, int whichData, vector<User>& firstDose, vector<User>& secondDose);
 
 };
 
