@@ -1,15 +1,14 @@
 #include<iostream>
+#include <vector>
+#include <queue>
+#include "user.h"
 using namespace std;
  
 
 
 int main() {
 
-	cout << "Hello Team" << endl;
-
-
-
-
-
+	vector<User> firstDose, secondDose;
+	queue<User> waitingList;
 	return 0;
 }

@@ -58,7 +58,16 @@ public:
         this->received_both_doses = received_both_doses;
     }
 
-
-
 };
+class Admin 
+    {
+    public:
+        string userName;
+        string password;
+
+    public:
+        Admin();
+        //~Admin();
+        void Statistics(vector<User>, vector<User>, queue<User>);
+    };
 
