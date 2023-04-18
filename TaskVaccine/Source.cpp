@@ -75,10 +75,10 @@ map<string, User> user_map;
 //function to view user record(s) (Admin)
 void ViewRecord() {
     if (user_map.empty())
-        cout << "there is no records to view.\n";
+        cout << "there is no records to view.";
    
     else {
-        cout << "\nif you want to view all records press 1 \n\t\t    one record press 2\nplease enter your choice: ";
+        cout << "if you want to view all records press 1 \n\t\t    one record press 2\nplease enter your choice: ";
         int typeofview;
         string NationalId;
         bool review = true;
@@ -89,7 +89,7 @@ void ViewRecord() {
         case 1:
             for (auto itr = user_map.begin();itr != user_map.end();++itr)
             {
-                cout << "\nName: " << itr->second.get_name() << endl;
+                cout << "Name: " << itr->second.get_name() << endl;
                 cout << "NationalID: " << itr->second.get_national_id() << endl;
                 cout << "Password: " << itr->second.get_password() << endl;
                 cout << "Governorate: " << itr->second.get_governorate() << endl;
@@ -144,10 +144,10 @@ void ViewRecord() {
 //function to delete user record(s) (Admin)
 void DeleteRecord() {
     if (user_map.empty())
-        cout << "there is no records to delete.\n";
+        cout << "there is no records to delete.";
     
     else {
-        cout << "\nif you want to delete all records press 1 \n\t\t      one record press 2\nplease enter your choice: ";
+        cout << "if you want to delete all records press 1 \n\t\t      one record press 2\nplease enter your choice: ";
         int typeofdeletion;
         string NationalId;
         bool redelete = true;
@@ -157,7 +157,6 @@ void DeleteRecord() {
         {
         case 1:
             user_map.clear();
-            cout << "All records are deleted successfully";
             break;
         case 2:
             while (redelete) {
@@ -182,18 +181,5 @@ void DeleteRecord() {
             break;
         }
     }
-}
-void main() {
-    /*User newuser1("Ereny", "1234567890123", "ikrmtgp", 'F', 17, "Fayoum", true, false);
-    User newuser2("Nardeen", "123456781234", "refuh", 'F', 17, "Cairo", true, true);
-    User newuser3("Milad", "123456712345", "krerp", 'M', 17, "Alex", true, false);
-    User newuser4("Sobhy", "123456123456", "ekdji", 'M', 17, "Fayoum", false, false);
-    ViewRecord();
-    DeleteRecord();
-    user_map.insert({ newuser1.get_national_id(),newuser1 });
-    user_map.insert({ newuser2.get_national_id(),newuser2 });
-    user_map.insert({ newuser3.get_national_id(),newuser3 });
-    user_map.insert({ newuser4.get_national_id(),newuser4 });
-    ViewRecord();
-    DeleteRecord();*/
+    
 }
