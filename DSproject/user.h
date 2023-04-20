@@ -22,6 +22,7 @@ public:
     User(string name, string national_id, string password, char gender, int age,
         string governorate, bool vaccinated, bool received_both_doses);
 
+
     // Getters
     string get_name() const;
     string get_national_id() const;
@@ -37,8 +38,8 @@ public:
     //Functions
 
     //Edit user data
-    void EditUserData(int index, int whichData, vector<User>& firstDose, vector<User>& secondDose);
-    void deleteUser(int index, int whichData, vector<User>& firstDose, vector<User>& secondDose);
+    void EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User> waitingList, string password);
+    void deleteUser(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User> waitingList, string password);
 
 };
 
