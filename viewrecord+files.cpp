@@ -3,8 +3,7 @@
 #include <string>
 #include <vector>
 #include <queue>
-#include <algorithm>
-#include <map>
+
 using namespace std;
 class User {
 
@@ -67,7 +66,7 @@ public:
 vector<User> firstDose;;
 vector<User> secondDose;
 queue<User> waiting_list;
-map<string, User> user_map;
+
 
 
 // Function to add a new user record
@@ -78,11 +77,11 @@ void view_record()
 
     User user1 = waiting_list.front();
 
-    cout << user1.get_name();
-    cout << user1.get_national_id();
-    cout << user1.get_age();
-    cout << user1.get_gender();
-    cout << user1.get_governorate();
+    cout << user1.get_name() <<endl;
+    cout << user1.get_national_id() <<endl;
+    cout << user1.get_age() <<endl;
+    cout << user1.get_gender() <<endl;
+    cout << user1.get_governorate() <<endl;
 
 
 }
