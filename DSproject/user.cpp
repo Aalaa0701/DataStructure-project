@@ -44,97 +44,126 @@ void User::set_vaccinated(bool vaccinated) {
 void User::set_received_both_doses(bool received_both_doses) {
     this->received_both_doses = received_both_doses;
 }
-void User::EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User> waitingList, string password) {
+void User::EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password) {
     if (whichData == 0) {
+        char ChoiceForEditingAgain;
         int choice;
-       /* cout << "1 "+ firstDose[index].age << endl;
-        cout << "2 "+ firstDose[index].governorate << endl;
-        cout << "3 "+ firstDose[index].password << endl;*/
-        cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
-        cin >> choice;
-        if (choice == 1) {
-            string newName;
-            getline(cin, newName);
-            firstDose[firstIndex].name = newName;
-        }
-        else if (choice == 2) {
-            string newPassword;
-            getline(cin,newPassword);
-            firstDose[firstIndex].password = newPassword;
-        }
-        else if (choice == 3) {
-            char newGender;
-            cin >> newGender;
-            firstDose[firstIndex].gender = newGender;
-        }
-        else if (choice == 4) {
-            int newAge;
-            cin >> newAge;
-            firstDose[firstIndex].age = newAge;
-        }
-        else if (choice == 5) {
-            string newGovernorate;
-            getline(cin, newGovernorate);
-            firstDose[firstIndex].governorate = newGovernorate;
-        }
-        else if (choice == 6) {
-            char choiceForVaccine;
-            cout << "did you recieve the second dose?" << endl;
-            cin >> choiceForVaccine;
-            if (choiceForVaccine == 'Y' || choiceForVaccine == 'y') {
-                User userToBeTransferred(firstDose[firstIndex].name, firstDose[firstIndex].national_id, firstDose[firstIndex].password, firstDose[firstIndex].gender, firstDose[firstIndex].age, firstDose[firstIndex].governorate, firstDose[firstIndex].vaccinated, firstDose[firstIndex].received_both_doses);
-                firstDose.erase(firstDose.begin() + firstIndex);
-                secondDose.push_back(userToBeTransferred);
+        do
+        {
+            cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
+            cin >> choice;
+            if (choice == 1) {
+                string newName;
+                cout << "PLease enter new Name" << endl;
+                getline(cin, newName);
+                firstDose[firstIndex].name = newName;
+            }
+            else if (choice == 2) {
+                string newPassword;
+                cout << "Please enter new password" << endl;
+                getline(cin, newPassword);
+                firstDose[firstIndex].password = newPassword;
+            }
+            else if (choice == 3) {
+                char newGender;
+                cout << "Please enter gender" << endl;
+                cin >> newGender;
+                if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
+                    cout << "Please enter valid character" << endl;
+                    return;
+                }
+                else {
+                    firstDose[firstIndex].gender = newGender;
+                }
+
+            }
+            else if (choice == 4) {
+                int newAge;
+                cout << "Please enter updated age" << endl;
+                cin >> newAge;
+                firstDose[firstIndex].age = newAge;
+            }
+            else if (choice == 5) {
+                string newGovernorate;
+                cout << "please enter updated governorate" << endl;
+                getline(cin, newGovernorate);
+                firstDose[firstIndex].governorate = newGovernorate;
+            }
+            else if (choice == 6) {
+                char choiceForVaccine;
+                cout << "did you recieve the second dose?" << endl;
+                cin >> choiceForVaccine;
+                if (choiceForVaccine == 'Y' || choiceForVaccine == 'y') {
+                    User userToBeTransferred(firstDose[firstIndex].name, firstDose[firstIndex].national_id, firstDose[firstIndex].password, firstDose[firstIndex].gender, firstDose[firstIndex].age, firstDose[firstIndex].governorate, firstDose[firstIndex].vaccinated, firstDose[firstIndex].received_both_doses);
+                    firstDose.erase(firstDose.begin() + firstIndex);
+                    secondDose.push_back(userToBeTransferred);
+                }
+                else {
+                    return;
+                }
             }
             else {
-                return;
+                cout << "Invalid Choice" << endl;
             }
-        }
-        else {
-            cout << "Invalid Choice" << endl;
-        }
+            cout << "Do you want to edit another info?" << endl;
+            cin >> ChoiceForEditingAgain;
+        } while (ChoiceForEditingAgain=='Y'||ChoiceForEditingAgain=='y');
+       
 
     }
     else if (whichData == 1) {
         int choice;
-       /* cout << "1 " + secondDose[index].age << endl;
-        cout << "2 " + secondDose[index].governorate << endl;
-        cout << "3 " + secondDose[index].password << endl;*/
-        cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate" << endl;
-        cin >> choice;
-        if (choice == 1) {
-            string newName;
-            getline(cin,newName);
-            secondDose[secondIndex].name = newName;
-        }
-        else if (choice == 2) {
-            string newPassword;
-            getline(cin,newPassword);
-            secondDose[secondIndex].password = newPassword;
-        }
-        else if (choice == 3) {
-            char newGender;
-            cin >> newGender;
-            if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-                cout << "Please enter valid character" << endl;
+        char choiceForEditing;
+        do
+        {
+            cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate" << endl;
+            cin >> choice;
+            if (choice == 1) {
+                string newName;
+                cout << "Please enter new Name" << endl;
+                getline(cin, newName);
+                secondDose[secondIndex].name = newName;
+            }
+            else if (choice == 2) {
+                string newPassword;
+                cout << "Please enter new password" << endl;
+                getline(cin, newPassword);
+                secondDose[secondIndex].password = newPassword;
+            }
+            else if (choice == 3) {
+                char newGender;
+                cout << "Please enter Gender" << endl;
+                cin >> newGender;
+                if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
+                    cout << "Please enter valid character" << endl;
+                    return;
+                }
+                else {
+                    secondDose[secondIndex].gender = newGender;
+                }
+            }
+            else if (choice == 4) {
+                int newAge;
+                cout << "Please enter updated Age" << endl;
+                cin >> newAge;
+                secondDose[secondIndex].age = newAge;
+            }
+            else if (choice == 5) {
+                string newGovernorate;
+                cout << "Please enter updated governorate" << endl;
+                getline(cin, newGovernorate);
+                secondDose[secondIndex].governorate = newGovernorate;
             }
             else {
-                secondDose[secondIndex].gender = newGender;
+                cout << "Invalid Choice" << endl;
             }
-        }
-        else if (choice == 4) {
-            int newAge;
-            cin >> newAge;
-            secondDose[secondIndex].age = newAge;
-        }
-        else if (choice == 5) {
-            string newGovernorate;
-            getline(cin, newGovernorate);
-            secondDose[secondIndex].governorate = newGovernorate;
-        }
-        else {
-            cout << "Invalid Choice" << endl;
-        }
+
+            cout << "Do you want to edit another Info?" << endl;
+            cin >> choiceForEditing;
+
+        } while (choiceForEditing=='Y'||choiceForEditing=='y');
+       
+        
     }
     else if (whichData == 2) {
         int choice;
@@ -166,7 +195,13 @@ void User::EditUserData(int firstIndex, int secondIndex, int whichData, vector<U
                         cout << "Please enter gender" << endl;
                         char newGender;
                         cin >> newGender;
-                        waitingList.front().gender = newGender;
+                        if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
+                            cout << "Please enter valid character" << endl;
+                            return;
+                        }
+                        else {
+                            waitingList.front().gender = newGender;
+                        }
                     }
                     else if (choice == 4) {
                         cout << "Please enter age" << endl;
@@ -232,7 +267,7 @@ void User::EditUserData(int firstIndex, int secondIndex, int whichData, vector<U
     }
 
 }
-void User::deleteUser(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User> waitingList, string password) {
+void User::deleteUser(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User> &waitingList, string password) {
     char choice;
     cout << "Do you want to delete your record" << endl;
     cin >> choice;
