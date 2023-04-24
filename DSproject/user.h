@@ -3,6 +3,7 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
+#include<map>
 using namespace std;
 
 class User
@@ -19,6 +20,8 @@ class User
 
 public:
     // Constructor
+    User();
+    ~User();
     User(string name, string national_id, string password, char gender, int age,
         string governorate, bool vaccinated, bool received_both_doses);
 
@@ -35,11 +38,14 @@ public:
     // Setters
     void set_vaccinated(bool vaccinated);
     void set_received_both_doses(bool received_both_doses);
+
     //Functions
+   // bool is_national_id_used(string national_id, map<string, User> user_map);
+    void add_user(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map);
 
     //Edit user data
-    void EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password);
-    void deleteUser(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password);
+   /* void EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password);
+    void deleteUser(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password);*/
 
 };
 
