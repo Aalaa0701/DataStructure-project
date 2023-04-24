@@ -62,10 +62,6 @@ void User::set_vaccinated(bool vaccinated) {
 void User::set_received_both_doses(bool received_both_doses) {
     this->received_both_doses = received_both_doses;
 }
-// Function to check if a national ID is already in use
-//bool is_national_id_used(string national_id, map<string, User> user_map) {
-//    return (user_map.find(national_id) != user_map.end());
-//}
 // Function to add a new user record
 void User::add_user(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map) {
     string name, national_id, password, governorate;
@@ -144,6 +140,56 @@ void User::add_user(vector<User>& firstDose, vector<User>& secondDose, queue<Use
         return;
     }
 }
+
+//Function to display User
+void User::display_user_data(vector<User> firstDose, vector<User> secondDose, queue<User> waiting_list, map<string, User> user_map) {
+    string  national_id;
+    string  password;
+    bool if_exist = true;
+    while (if_exist == true)
+    {
+
+
+        cout << "Enter national ID (13 digits) :";
+        getline(cin, national_id);
+
+        while (national_id.length() != 13)
+        {
+            cout << "Please,Enter national ID (13 digits) : ";
+            getline(cin, national_id);
+        }
+        cout << "Enter password :";
+        getline(cin, password);
+
+        if (user_map.find(national_id) != user_map.end())
+        {
+
+            if (password == user_map[national_id].get_password())
+            {
+
+                cout << "your name is:" << user_map[national_id].get_name() << endl;
+                cout << "your  national ID is:" << user_map[national_id].get_national_id() << endl;
+                cout << "your gender is:" << user_map[national_id].get_gender() << endl;
+                cout << "your age is:" << user_map[national_id].get_age() << endl;
+                cout << "your governorate is:" << user_map[national_id].get_governorate() << endl;
+                cout << "If you are vaccinated:" << user_map[national_id].is_vaccinated() << endl;
+                cout << "IF you have received both doses:" << user_map[national_id].has_received_both_doses() << endl;
+                if_exist = false;
+            }
+            else
+            {
+                cout << "Please try again , Your password or national Id isn't correct" << endl;
+            }
+
+        }
+        else
+        {
+            cout << "Please try again , Your password or national Id isn't correct" << endl;
+        }
+
+    }
+}
+
 //void User::EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password) {
 //    if (whichData == 0) {
 //        char ChoiceForEditingAgain;

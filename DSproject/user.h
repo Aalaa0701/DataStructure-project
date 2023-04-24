@@ -42,6 +42,7 @@ public:
     //Functions
    // bool is_national_id_used(string national_id, map<string, User> user_map);
     void add_user(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map);
+    void display_user_data(vector<User> firstDose, vector<User> secondDose, queue<User> waiting_list, map<string, User> user_map);
 
     //Edit user data
    /* void EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password);

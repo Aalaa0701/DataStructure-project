@@ -30,7 +30,9 @@ int main() {
 		
 		}
 		else if (choiceForMain == 2) {
-		
+			User* temp = new User();
+			temp->display_user_data(firstDose, secondDose, waitingList, user_map);
+			delete temp;
 		}
 		else if (choiceForMain == 3) {
 		
