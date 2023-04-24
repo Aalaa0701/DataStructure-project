@@ -190,8 +190,9 @@ void User::display_user_data(vector<User> firstDose, vector<User> secondDose, qu
     }
 }
 
-//void User::EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string password) {
-//    if (whichData == 0) {
+
+//void User::EditUserData(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId) {
+//   /* if (whichData == 0) {
 //        char ChoiceForEditingAgain;
 //        int choice;
 //        do
@@ -316,7 +317,7 @@ void User::display_user_data(vector<User> firstDose, vector<User> secondDose, qu
 //        char choiceForLoop;
 //        queue<User>temp;
 //        while (!waitingList.empty()) {
-//            if (waitingList.front().password != password) {
+//            if (waitingList.front().get_national_id() != nationalId) {
 //                User temporaryUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
 //                temp.push(temporaryUser);
 //                waitingList.pop();
@@ -410,10 +411,11 @@ void User::display_user_data(vector<User> firstDose, vector<User> secondDose, qu
 //    }
 //    else {
 //        cout << "Wrong whichData index" << endl;
-//    }
+//    }*/
+//
 //
 //}
-//void User::deleteUser(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User> &waitingList, string password) {
+//void User::deleteUser(int firstIndex, int secondIndex, int whichData, vector<User>& firstDose, vector<User>& secondDose, queue<User> &waitingList, string nationalId) {
 //    char choice;
 //    cout << "Do you want to delete your record" << endl;
 //    cin >> choice;
@@ -427,7 +429,7 @@ void User::display_user_data(vector<User> firstDose, vector<User> secondDose, qu
 //        else if (whichData == 1) {
 //            queue<User> temp;
 //            while (!waitingList.empty()) {
-//                if (waitingList.front().password != password) {
+//                if (waitingList.front().get_national_id() != nationalId) {
 //                    User tempUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
 //                    temp.push(tempUser);
 //                    waitingList.pop();
