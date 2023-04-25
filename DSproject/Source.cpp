@@ -15,11 +15,12 @@ int main() {
 	map<string, User> user_map;
 	map<string, User>::iterator it;
 	int choiceForMain;
+	string nationalId;
 
 
 	do
 	{
-		cout << "Enter 1 if you want to add user , 2 to display record, 3 to edit , 3 to delete or any other number to exit " << endl;
+		cout << "Enter 1 if you want to add user , 2 to display record, or any other number to exit " << endl;
 		cin >> choiceForMain;
 		cin.ignore();
 		if (choiceForMain == 1) {
@@ -30,31 +31,33 @@ int main() {
 		
 		}
 		else if (choiceForMain == 2) {
-			char choiceForEdit;
+			int choiceForEdit;
 			User* temp = new User();
-			temp->display_user_data(firstDose, secondDose, waitingList, user_map);
-			cout << "Do you want to edit your record?  Y/N" << endl;
+			temp->display_user_data(firstDose, secondDose, waitingList, user_map, nationalId);
+			cout << "Enter 1 to edit or 2 to delete  " << endl;
 			cin >> choiceForEdit;
-			if (choiceForEdit == 'Y' || choiceForEdit == 'y') {
+			if (choiceForEdit==1) {
+				temp->EditUserData(firstDose, secondDose, waitingList, nationalId);
 			}
-			else if (choiceForEdit == 'N' || choiceForEdit == 'n') {
-				cout << "Smart" << endl;
-				break;
+			else if (choiceForEdit ==2) {
+				temp->deleteUser(firstDose, secondDose, waitingList, nationalId,user_map);
 			}
 			else {
 				cout << "IDIOT" << endl;
-				break;
 			}
 			delete temp;
 		}
 		else if (choiceForMain == 3) {
-		
+			
 		}
 		else if (choiceForMain == 4) {
 		
 		}
 		else {
 			break;
+		}
+		for (it = user_map.begin();it != user_map.end();it++) {
+			cout << it->first << endl;
 		}
 
 
