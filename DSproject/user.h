@@ -19,6 +19,7 @@ public:
     bool received_both_doses;
 
 
+
 public:
     // Constructor
     User();
