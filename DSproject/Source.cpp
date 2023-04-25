@@ -20,7 +20,7 @@ int main() {
 
 	do
 	{
-		cout << "Enter 1 if you want to add user , 2 to display record, or any other number to exit " << endl;
+		cout << "Enter 1 if you want to add user , 2 to display record or edit or delete, or any other number to exit " << endl;
 		cin >> choiceForMain;
 		cin.ignore();
 		if (choiceForMain == 1) {
@@ -34,13 +34,14 @@ int main() {
 			int choiceForEdit;
 			User* temp = new User();
 			temp->display_user_data(firstDose, secondDose, waitingList, user_map, nationalId);
+			cout << nationalId << endl;
 			cout << "Enter 1 to edit or 2 to delete  " << endl;
 			cin >> choiceForEdit;
 			if (choiceForEdit==1) {
-				temp->EditUserData(firstDose, secondDose, waitingList, nationalId);
+				//temp->EditUserData(firstDose, secondDose, waitingList, nationalId);
 			}
 			else if (choiceForEdit ==2) {
-				temp->deleteUser(firstDose, secondDose, waitingList, nationalId,user_map);
+				//temp->deleteUser(firstDose, secondDose, waitingList, nationalId,user_map);
 			}
 			else {
 				cout << "IDIOT" << endl;

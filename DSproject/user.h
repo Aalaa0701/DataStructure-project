@@ -8,6 +8,7 @@ using namespace std;
 
 class User
 {
+public:
     string name;
     string national_id;
     string password;
@@ -36,6 +37,7 @@ public:
     bool is_vaccinated() const;
     bool has_received_both_doses() const;
     // Setters
+
     void set_vaccinated(bool vaccinated);
     void set_received_both_doses(bool received_both_doses);
 
@@ -45,8 +47,8 @@ public:
     void display_user_data(vector<User> firstDose, vector<User> secondDose, queue<User> waiting_list, map<string, User> user_map, string& nationalId);
 
     //Edit user data
-    void EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId);
-    void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map);
+    /*void EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId);
+    void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map);*/
 
 };
 
