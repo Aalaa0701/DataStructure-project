@@ -841,74 +841,7 @@ void User::display_user_data(vector<User> firstDose, vector<User> secondDose, qu
 //    }
 //}
 
-void User::ViewRecord(map<string, User> user_map) {
-    if (user_map.empty())
-        cout << "there is no records to view.\n";
 
-    else {
-        cout << "\nif you want to view all records press 1 \n\t\t    one record press 2\nplease enter your choice: ";
-        int typeofview;
-        string NationalId;
-        bool review = true;
-        char choice;
-        cin >> typeofview;
-        switch (typeofview)
-        {
-        case 1:
-            for (auto itr = user_map.begin();itr != user_map.end();++itr)
-            {
-                cout << "\nName: " << itr->second.get_name() << endl;
-                cout << "NationalID: " << itr->second.get_national_id() << endl;
-                cout << "Password: " << itr->second.get_password() << endl;
-                cout << "Governorate: " << itr->second.get_governorate() << endl;
-                cout << "Gender: " << itr->second.get_gender() << endl;
-                cout << "Age: " << itr->second.get_age() << endl;
-                if (!itr->second.is_vaccinated())
-                    cout << itr->second.get_name() << " hasn't recieved any dose of Vaccine." << endl;
-                else {
-                    if (!itr->second.has_received_both_doses())
-                        cout << itr->second.get_name() << " has recieved one dose of Vaccine." << endl;
-                    else
-                        cout << itr->second.get_name() << " has recieved both doses of Vaccine." << endl;
-                }
-            }
-            break;
-        case 2:
-            while (review) {
-                cout << "please enter NationalID: ";
-                cin >> NationalId;
-                if (user_map.find(NationalId) != user_map.end()) {
-                    cout << "Name: " << user_map[NationalId].get_name() << endl;
-                    cout << "NationalID: " << user_map[NationalId].get_national_id() << endl;
-                    cout << "Password: " << user_map[NationalId].get_password() << endl;
-                    cout << "Governorate: " << user_map[NationalId].get_governorate() << endl;
-                    cout << "Gender: " << user_map[NationalId].get_gender() << endl;
-                    cout << "Age: " << user_map[NationalId].get_age() << endl;
-                    if (!user_map[NationalId].is_vaccinated())
-                        cout << user_map[NationalId].get_name() << " hasn't recieved any dose of Vaccine." << endl;
-                    else {
-                        if (!user_map[NationalId].has_received_both_doses())
-                            cout << user_map[NationalId].get_name() << " has recieved one dose of Vaccine." << endl;
-                        else
-                            cout << user_map[NationalId].get_name() << " has recieved both doses of Vaccine." << endl;
-                    }
-                }
-                else {
-                    cout << "This NationalID is invalid. \n";
-                }
-                cout << "Do you want to view onther record? Y or N: ";
-                cin >> choice;
-                if (choice == 'Y' || choice == 'y')
-                    review = true;
-                else
-                    review = false;
-            }
-            break;
-        default:
-            break;
-        }
-    }
-}
 User::~User() {
 
 }
@@ -1052,6 +985,114 @@ void Admin::Statistics(vector<User>firstDose,vector<User>secondDose,queue<User>w
 	cout << "Ages from 18 to 39 that have been fully vaccinated : " << fifthRangePct << "%" << endl;
 
 }
+void Admin::ViewRecord(map<string, User> user_map) {
+    if (user_map.empty())
+        cout << "there is no records to view.\n";
 
+    else {
+        cout << "\nif you want to view all records press 1 \n\t\t    one record press 2\nplease enter your choice: ";
+        int typeofview;
+        string NationalId;
+        bool review = true;
+        char choice;
+        cin >> typeofview;
+        switch (typeofview)
+        {
+        case 1:
+            for (auto itr = user_map.begin();itr != user_map.end();++itr)
+            {
+                cout << "\nName: " << itr->second.get_name() << endl;
+                cout << "NationalID: " << itr->second.get_national_id() << endl;
+                cout << "Password: " << itr->second.get_password() << endl;
+                cout << "Governorate: " << itr->second.get_governorate() << endl;
+                cout << "Gender: " << itr->second.get_gender() << endl;
+                cout << "Age: " << itr->second.get_age() << endl;
+                if (!itr->second.is_vaccinated())
+                    cout << itr->second.get_name() << " hasn't recieved any dose of Vaccine." << endl;
+                else {
+                    if (!itr->second.has_received_both_doses())
+                        cout << itr->second.get_name() << " has recieved one dose of Vaccine." << endl;
+                    else
+                        cout << itr->second.get_name() << " has recieved both doses of Vaccine." << endl;
+                }
+            }
+            break;
+        case 2:
+            while (review) {
+                cout << "please enter NationalID: ";
+                cin >> NationalId;
+                if (user_map.find(NationalId) != user_map.end()) {
+                    cout << "Name: " << user_map[NationalId].get_name() << endl;
+                    cout << "NationalID: " << user_map[NationalId].get_national_id() << endl;
+                    cout << "Password: " << user_map[NationalId].get_password() << endl;
+                    cout << "Governorate: " << user_map[NationalId].get_governorate() << endl;
+                    cout << "Gender: " << user_map[NationalId].get_gender() << endl;
+                    cout << "Age: " << user_map[NationalId].get_age() << endl;
+                    if (!user_map[NationalId].is_vaccinated())
+                        cout << user_map[NationalId].get_name() << " hasn't recieved any dose of Vaccine." << endl;
+                    else {
+                        if (!user_map[NationalId].has_received_both_doses())
+                            cout << user_map[NationalId].get_name() << " has recieved one dose of Vaccine." << endl;
+                        else
+                            cout << user_map[NationalId].get_name() << " has recieved both doses of Vaccine." << endl;
+                    }
+                }
+                else {
+                    cout << "This NationalID is invalid. \n";
+                }
+                cout << "Do you want to view onther record? Y or N: ";
+                cin >> choice;
+                if (choice == 'Y' || choice == 'y')
+                    review = true;
+                else
+                    review = false;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+}
+//function to delete user record(s) (Admin)
+void Admin::DeleteRecord(map<string, User>& user_map) {
+    if (user_map.empty())
+        cout << "there is no records to delete.\n";
 
+    else {
+        cout << "\nif you want to delete all records press 1 \n\t\t      one record press 2\nplease enter your choice: ";
+        int typeofdeletion;
+        string NationalId;
+        bool redelete = true;
+        char choice;
+        cin >> typeofdeletion;
+        switch (typeofdeletion)
+        {
+        case 1:
+            user_map.clear();
+            cout << "All records are deleted successfully";
+            break;
+        case 2:
+            while (redelete) {
+                cout << "please enter NationalID: ";
+                cin >> NationalId;
+                if (user_map.find(NationalId) != user_map.end()) {
+                    user_map.erase(NationalId);
+                    cout << "Record is deleted successfully.\n";
+                }
+                else {
+                    cout << "This NationalID is invalid. \n";
+                }
+                cout << "Do you want to delete onther record? Y or N: ";
+                cin >> choice;
+                if (choice == 'Y' || choice == 'y')
+                    redelete = true;
+                else
+                    redelete = false;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+}
 
