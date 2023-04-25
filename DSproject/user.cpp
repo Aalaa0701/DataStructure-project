@@ -1095,4 +1095,41 @@ void Admin::DeleteRecord(map<string, User>& user_map) {
     }
 
 }
+void Admin::FilteredRecords(vector<User>firstDose, vector<User>secondDose) {
+    vector<User>::iterator it;
+    int numOfDose;
+    cout << "Enter the Number of Doses \n";
+    cin >> numOfDose;
+    if (numOfDose == 1) {
+
+        it = firstDose.begin();
+        while (it != firstDose.end())
+        {
+            cout << "National_id:" << "\t" << it->get_national_id() << "\t" << "Name:" << "\t" << it->get_name() << "\t" << "Gender:" << "\t" << it->get_gender() << "\t" << "Age:" << "\t" << it->get_age() << "\t" << "Governorate:" << "\t" << it->get_governorate() << endl;
+            it++;
+        }
+
+    }
+    else if (numOfDose == 2) {
+        it = secondDose.begin();
+        while (it != secondDose.end())
+        {
+            cout << "National_id:" << "\t" << it->get_national_id() << "\t" << "Name:" << "\t" << it->get_name() << "\t" << "Gender:" << "\t" << it->get_gender() << "\t" << "Age:" << "\t" << it->get_age() << "\t" << "Governorate:" << "\t" << it->get_governorate() << endl;
+            it++;
+        }
+    }
+    else
+        cout << "Invalid Number";
+}
+void Admin::OrderedByAge(vector<User>firstDose, vector<User>secondDose) {
+    cout << "Sorting Records\n";
+    vector<User>both_users;
+    both_users.insert(both_users.end(), firstDose.begin(), firstDose.end());
+    both_users.insert(both_users.end(), secondDose.begin(), secondDose.end());
+    sort(both_users.begin(), both_users.end(), [](const User& a, const User& b) { return a.get_age() < b.get_age(); });//Sorting the vector;
+    for (auto i = both_users.begin(); i < both_users.end(); i++)
+    {
+        cout << "Age:" << i->get_age() << "\t" << "National_id:" << "\t" << i->get_national_id() << "\t" << "Name:" << "\t" << i->get_name() << "\t" << "Gender:" << "\t" << i->get_gender() << "\t" << "Governorate:" << "\t" << i->get_governorate() << endl;
+    }
+}
 

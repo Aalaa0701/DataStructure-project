@@ -27,7 +27,7 @@ int main() {
 		getline(cin, password);
 		if (userName == adminId && password == adminPassword) {
 			do {
-					cout << "Enter 1 if you want to view users or 2 if you want to delete users" << endl;
+					cout << "Enter 1 if you want to view users or 2 if you want to delete users or 3 if you want to filter records or 4 if filtered by age" << endl;
 					cin >> choiceForAdmin;
 					cin.ignore();
 					if (choiceForAdmin == 1) {
@@ -40,9 +40,20 @@ int main() {
 						adminTemp->DeleteRecord(user_map);
 						delete adminTemp;
 					}
-		else {
-				break;
-			}
+					else if (choiceForAdmin == 3) {
+						Admin* adminTemp = new Admin();
+						adminTemp->FilteredRecords(firstDose, secondDose);
+						delete adminTemp;
+					}
+					else if (choiceForAdmin == 4) {
+						Admin* adminTemp = new Admin();
+						adminTemp->OrderedByAge(firstDose, secondDose);
+						delete adminTemp;
+					}
+
+					else {
+						break;
+					}
 
 			} while (choiceForAdmin == 1 || choiceForAdmin == 2);
 		}
