@@ -36,14 +36,6 @@ public:
     string get_governorate() const;
     bool is_vaccinated() const;
     bool has_received_both_doses() const;
-    // Setters
-
-};
-class Admin 
-    {
-    public:
-        string userName;
-        string password;
     void set_vaccinated(bool vaccinated);
     void set_received_both_doses(bool received_both_doses);
 
@@ -56,6 +48,15 @@ class Admin
     /*void EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId);
     void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map);*/
 
+    // Setters
+
+};
+class Admin 
+    {
+    public:
+        string userName;
+        string password;
+   
     public:
         Admin();
         //~Admin();
