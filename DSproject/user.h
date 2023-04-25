@@ -38,6 +38,12 @@ public:
     bool has_received_both_doses() const;
     // Setters
 
+};
+class Admin 
+    {
+    public:
+        string userName;
+        string password;
     void set_vaccinated(bool vaccinated);
     void set_received_both_doses(bool received_both_doses);
 
@@ -50,5 +56,9 @@ public:
     /*void EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId);
     void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map);*/
 
-};
+    public:
+        Admin();
+        //~Admin();
+        void Statistics(vector<User>, vector<User>, queue<User>);
+    };
 
