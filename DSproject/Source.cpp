@@ -9,12 +9,12 @@
 using namespace std;
  
 void WriteWaitingList(queue<User>waitingList);
-void read_file_waitinglist(queue<User>& waitingList);
+void read_file_waitinglist(queue<User>& waitingList, map<string, User>& user_map);
 void WriteOneDose(vector<User>firstDose);
-void read_file_onedose(vector<User>& firstDose);
+void read_file_onedose(vector<User>& firstDose, map<string, User>& user_map);
 void WriteTwoDose(vector<User>secondDose);
-void read_file_twodose(vector<User>& secondDose);
-void ReadAll(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList);
+void read_file_twodose(vector<User>& secondDose, map<string, User>& user_map);
+void ReadAll(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, map<string, User>& user_map);
 void WriteAll(vector<User> firstDose, vector<User> secondDose, queue<User> waitingList);
 
 
@@ -22,14 +22,13 @@ int main() {
 	string adminId="SosyBosy", adminPassword="1234", userName, password;
 	vector<User> firstDose,secondDose;
 	queue<User> waitingList;
+	queue<User> temporary = waitingList;
+
 	map<string, User> user_map;
 	map<string, User>::iterator it;
 	int choiceForUser, choiceForAdmin, choiceForMain;
 	string nationalId;
-    ReadAll(firstDose, secondDose, waitingList);
-	
-	
-
+    ReadAll(firstDose, secondDose, waitingList,user_map);
 
 	do
 	{
@@ -39,7 +38,7 @@ int main() {
 		getline(cin, password);
 		if (userName == adminId && password == adminPassword) {
 			do {
-					cout << "Enter 1 if you want to view users or 2 if you want to delete users or 3 if you want to filter records or 4 if filtered by age" << endl;
+					cout << "Enter 1 if you want to view users or 2 if you want to delete users or 3 if you want to filter records or 4 if filtered by age or 5 for statistics" << endl;
 					cin >> choiceForAdmin;
 					cin.ignore();
 					if (choiceForAdmin == 1) {
@@ -62,12 +61,16 @@ int main() {
 						adminTemp->OrderedByAge(firstDose, secondDose);
 						delete adminTemp;
 					}
-
+					else if (choiceForAdmin == 5) {
+						Admin* adminTemp = new Admin();
+						adminTemp->Statistics(firstDose, secondDose, waitingList,user_map);
+						delete adminTemp;
+					}
 					else {
 						break;
 					}
 
-			} while (choiceForAdmin == 1 || choiceForAdmin == 2);
+			} while (choiceForAdmin == 1 || choiceForAdmin == 2|| choiceForAdmin==3||choiceForAdmin==4||choiceForAdmin==5);
 		}
 		else {
 			do {
@@ -86,16 +89,16 @@ int main() {
 					User* temp = new User();
 					temp->display_user_data(firstDose, secondDose, waitingList, user_map, nationalId);
 					cout << nationalId << endl;
-					cout << "Enter 1 to edit or 2 to delete  " << endl;
+					cout << "Enter 1 to edit or 2 to delete or any number to exit  " << endl;
 					cin >> choiceForEdit;
 					if (choiceForEdit == 1) {
-						//temp->EditUserData(firstDose, secondDose, waitingList, nationalId);
+						temp->EditUserData(firstDose, secondDose, waitingList, user_map,nationalId);
 					}
 					else if (choiceForEdit == 2) {
-						//temp->deleteUser(firstDose, secondDose, waitingList, nationalId,user_map);
+						temp->deleteUser(firstDose, secondDose, waitingList, nationalId,user_map);
 					}
-					else {
-						cout << "IDIOT" << endl;
+					else{
+						break;
 					}
 					delete temp;
 				}
@@ -104,9 +107,6 @@ int main() {
 				}
 				else {
 					break;
-				}
-				for (it = user_map.begin();it != user_map.end();it++) {
-					cout << it->first << endl;
 				}
 
 
@@ -122,11 +122,6 @@ int main() {
 
 	} while (choiceForMain==1);
 	
-
-
-
-
-
 
     WriteAll(firstDose,secondDose,waitingList);
 	return 0;
@@ -147,10 +142,10 @@ int main() {
 // read and write
 
 
-void ReadAll(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList) {
-    read_file_waitinglist(waitingList);
-    read_file_onedose(firstDose);
-    read_file_twodose(secondDose);
+void ReadAll(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, map<string, User>& user_map) {
+    read_file_waitinglist(waitingList,user_map);
+    read_file_onedose(firstDose,user_map);
+    read_file_twodose(secondDose,user_map);
 }
 void WriteAll(vector<User> firstDose, vector<User> secondDose, queue<User> waitingList) {
     WriteWaitingList(waitingList);
@@ -159,106 +154,112 @@ void WriteAll(vector<User> firstDose, vector<User> secondDose, queue<User> waiti
 }
 void WriteWaitingList(queue<User>waitingList) {
     queue<User> temp = waitingList;
-    User u = temp.front();
+	User u;
     ofstream myfile("waitinglist.txt");
 
     while (!temp.empty())
     {
-        myfile << u.get_name() << " " << u.get_national_id() << " " << u.get_age() << " " << u.get_gender() << " " << u.get_governorate() << " " << u.is_vaccinated() << " " << u.has_received_both_doses() << endl;
+		u = temp.front();
+        myfile << u.get_name() << " " << u.get_national_id() << " "<<u.get_password()<<" " << u.get_age() << " " << u.get_gender() << " " << u.get_governorate() << " " << u.is_vaccinated() << " " << u.has_received_both_doses() << endl;
         temp.pop();
 
     }
     myfile.close();
 
 }
-void read_file_waitinglist(queue<User>& waitingList)
+void read_file_waitinglist(queue<User>& waitingList, map<string, User>& user_map)
 {
-    queue<User> temp = waitingList;
-    while (!temp.empty()) {
-        User u = temp.front();
+		queue<User> temp;
 
+
+		User u ;
         ifstream infile("waitinglist.txt");
         string name = u.get_name();
         string national_id = u.get_national_id();
+		string password = u.get_password();
         char gender = u.get_gender();
         int age = u.get_age();
         string governorate = u.get_governorate();
-        char vaccinated = u.is_vaccinated();
-        char received_both_doses = u.has_received_both_doses();
-        while (infile >> name >> national_id >> gender >> age >> governorate >> vaccinated >> received_both_doses)
+        bool vaccinated = u.vaccinated;
+        bool received_both_doses = u.received_both_doses;
+        while (infile >> name )
         {
-            cout << name << endl;
-            cout << national_id << endl;
-            cout << gender << endl;
-            cout << age << endl;
-            cout << governorate << endl;
-            cout << vaccinated << endl;
-            cout << received_both_doses << endl;
+			infile >> national_id >> password >> age >> gender >> governorate >> vaccinated >> received_both_doses;
+			User temp(name, national_id, password, gender, age, governorate, vaccinated, received_both_doses);
+
+			waitingList.push(temp);
+			user_map.insert({ national_id,temp});
+            
         }
         infile.close();
-    }
     
 
 }
 void WriteOneDose(vector<User>firstDose) {
-    vector<User> temp = firstDose;
-    // User u = temp[0];
     ofstream ofile("firstDose.txt");
-    for (int i = 0; i < temp.size(); i++)
+    for (int i = 0; i < firstDose.size(); i++)
     {
-        User u = temp[i];
-        ofile << u.get_name() << " " << u.get_national_id() << " " << u.get_age() << " " << u.get_gender() << " " << u.get_governorate() << " " << u.is_vaccinated() << " " << u.has_received_both_doses() << endl;
+        ofile << firstDose[i].get_name() << " " << firstDose[i].get_national_id() <<" " << firstDose[i].get_password() << " " << firstDose[i].get_age() << " " << firstDose[i].get_gender() << " " << firstDose[i].get_governorate() << " " << firstDose[i].is_vaccinated() << " " << firstDose[i].has_received_both_doses() << endl;
     }
     ofile.close();
 
 }
-void read_file_onedose(vector<User>& firstDose)
+void read_file_onedose(vector<User>& firstDose, map<string, User>& user_map)
 {
    
     User u;
     ifstream infile("firstDose.txt");
-    string name = u.get_name();
-    string national_id = u.get_national_id();
-    char gender = u.get_gender();
-    int age = u.get_age();
-    string governorate = u.get_governorate();
-    char vaccinated = u.is_vaccinated();
-    char received_both_doses = u.has_received_both_doses();
-    while (infile >> national_id )
+    string name = u.name;
+    string national_id = u.national_id;
+	string password = u.get_password();
+    char gender = u.gender;
+    int age = u.age;
+    string governorate = u.governorate;
+    bool vaccinated = u.vaccinated;
+    bool received_both_doses = u.received_both_doses;
+
+    while (infile >> name )
     {
-        infile >> name >> national_id >> gender>> age>> governorate>> vaccinated>> received_both_doses;
-        firstDose.push_back(u);
+        infile>> national_id >>password>> age>> gender >> governorate>> vaccinated>> received_both_doses;
+		User temp(name, national_id, password, gender, age, governorate, vaccinated, received_both_doses);
+
+        firstDose.push_back(temp);
+		user_map.insert({ national_id,temp });
+
+		
     }
     infile.close();
 }
 void WriteTwoDose(vector<User>secondDose) {
-    vector<User> temp = secondDose;
 
     ofstream ofile("secondDose.txt");
-    for (int i = 0; i < temp.size(); i++)
+    for (int i = 0; i < secondDose.size(); i++)
     {
-        User u = temp[i];
-        ofile << u.get_name() <<" "<< u.get_national_id() <<" "<< u.get_age() << " " << u.get_gender() << " " << u.get_governorate() << " " << u.is_vaccinated() << " " << u.has_received_both_doses()<<endl;
+        ofile << secondDose[i].get_name() <<" "<< secondDose[i].get_national_id() << " " << secondDose[i].get_password() << " " << secondDose[i].get_age() << " " << secondDose[i].get_gender() << " " << secondDose[i].get_governorate() << " " << secondDose[i].is_vaccinated() << " " << secondDose[i].has_received_both_doses() << endl;
     }
     ofile.close();
 
 }
-void read_file_twodose(vector<User>& secondDose)
+void read_file_twodose(vector<User>& secondDose, map<string, User>& user_map)
 {
     
     User u;
     ifstream infile("secondDose.txt");
     string name = u.get_name();
     string national_id = u.get_national_id();
+	string password = u.get_password();
     char gender = u.get_gender();
     int age = u.get_age();
     string governorate = u.get_governorate();
-    char vaccinated = u.is_vaccinated();
-    char received_both_doses = u.has_received_both_doses();
-    while (infile >> national_id )
+    bool vaccinated = u.is_vaccinated();
+    bool received_both_doses = u.has_received_both_doses();
+    while (infile >> name )
     {
-        infile >> name >> national_id >> gender >> age >> governorate >> vaccinated >> received_both_doses;
-        secondDose.push_back(u);
+		infile>> national_id >> password>>age >> gender >> governorate >> vaccinated >> received_both_doses;
+		User temp(name, national_id, password, gender, age, governorate, vaccinated, received_both_doses);
+        secondDose.push_back(temp);
+		user_map.insert({ national_id,temp });
+
     }
     infile.close();
 }

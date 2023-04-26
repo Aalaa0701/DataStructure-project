@@ -192,654 +192,331 @@ void User::display_user_data(vector<User> firstDose, vector<User> secondDose, qu
 }
 
 
-//void User::EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId) {
-//    //vector<User>::iterator firstDoseIt, secondDoseIt;
-//    /*if (whichData == 0) {
-//        char ChoiceForEditingAgain;
-//        int choice;
-//        do
-//        {
-//            cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
-//            cin >> choice;
-//            if (choice == 1) {
-//                string newName;
-//                cout << "PLease enter new Name" << endl;
-//                getline(cin, newName);
-//                firstDose[firstIndex].name = newName;
-//            }
-//            else if (choice == 2) {
-//                string newPassword;
-//                cout << "Please enter new password" << endl;
-//                getline(cin, newPassword);
-//                firstDose[firstIndex].password = newPassword;
-//            }
-//            else if (choice == 3) {
-//                char newGender;
-//                cout << "Please enter gender" << endl;
-//                cin >> newGender;
-//                if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                    cout << "Please enter valid character" << endl;
-//                    return;
-//                }
-//                else {
-//                    firstDose[firstIndex].gender = newGender;
-//                }
-//
-//            }
-//            else if (choice == 4) {
-//                int newAge;
-//                cout << "Please enter updated age" << endl;
-//                cin >> newAge;
-//                firstDose[firstIndex].age = newAge;
-//            }
-//            else if (choice == 5) {
-//                string newGovernorate;
-//                cout << "please enter updated governorate" << endl;
-//                getline(cin, newGovernorate);
-//                firstDose[firstIndex].governorate = newGovernorate;
-//            }
-//            else if (choice == 6) {
-//                char choiceForVaccine;
-//                cout << "did you recieve the second dose?" << endl;
-//                cin >> choiceForVaccine;
-//                if (choiceForVaccine == 'Y' || choiceForVaccine == 'y') {
-//                    User userToBeTransferred(firstDose[firstIndex].name, firstDose[firstIndex].national_id, firstDose[firstIndex].password, firstDose[firstIndex].gender, firstDose[firstIndex].age, firstDose[firstIndex].governorate, firstDose[firstIndex].vaccinated, firstDose[firstIndex].received_both_doses);
-//                    firstDose.erase(firstDose.begin() + firstIndex);
-//                    secondDose.push_back(userToBeTransferred);
-//                }
-//                else {
-//                    return;
-//                }
-//            }
-//            else {
-//                cout << "Invalid Choice" << endl;
-//            }
-//            cout << "Do you want to edit another info?" << endl;
-//            cin >> ChoiceForEditingAgain;
-//        } while (ChoiceForEditingAgain=='Y'||ChoiceForEditingAgain=='y');
-//       
-//
-//    }*/
-//    /*else if (whichData == 1) {
-//        int choice;
-//        char choiceForEditing;
-//        do
-//        {
-//            cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate" << endl;
-//            cin >> choice;
-//            if (choice == 1) {
-//                string newName;
-//                cout << "Please enter new Name" << endl;
-//                getline(cin, newName);
-//                secondDose[secondIndex].name = newName;
-//            }
-//            else if (choice == 2) {
-//                string newPassword;
-//                cout << "Please enter new password" << endl;
-//                getline(cin, newPassword);
-//                secondDose[secondIndex].password = newPassword;
-//            }
-//            else if (choice == 3) {
-//                char newGender;
-//                cout << "Please enter Gender" << endl;
-//                cin >> newGender;
-//                if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                    cout << "Please enter valid character" << endl;
-//                    return;
-//                }
-//                else {
-//                    secondDose[secondIndex].gender = newGender;
-//                }
-//            }
-//            else if (choice == 4) {
-//                int newAge;
-//                cout << "Please enter updated Age" << endl;
-//                cin >> newAge;
-//                secondDose[secondIndex].age = newAge;
-//            }
-//            else if (choice == 5) {
-//                string newGovernorate;
-//                cout << "Please enter updated governorate" << endl;
-//                getline(cin, newGovernorate);
-//                secondDose[secondIndex].governorate = newGovernorate;
-//            }
-//            else {
-//                cout << "Invalid Choice" << endl;
-//            }
-//
-//            cout << "Do you want to edit another Info?" << endl;
-//            cin >> choiceForEditing;
-//
-//        } while (choiceForEditing=='Y'||choiceForEditing=='y');
-//       
-//        
-//    }*/
-//    /*else if (whichData == 2) {
-//        int choice;
-//        char choiceForLoop;
-//        queue<User>temp;
-//        while (!waitingList.empty()) {
-//            if (waitingList.front().get_national_id() != nationalId) {
-//                User temporaryUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-//                temp.push(temporaryUser);
-//                waitingList.pop();
-//            }
-//            else {
-//                do {
-//                    cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
-//                    cin >> choice;
-//                    if (choice == 1) {
-//                        cout << "Please enter name" << endl;
-//                        string newName;
-//                        getline(cin, newName);
-//                        waitingList.front().name = newName;
-//                    }
-//                    else if (choice == 2) {
-//                        cout << "Please enter password" << endl;
-//                        string newPassword;
-//                        getline(cin, newPassword);
-//                        waitingList.front().password = newPassword;
-//                    }
-//                    else if (choice == 3) {
-//                        cout << "Please enter gender" << endl;
-//                        char newGender;
-//                        cin >> newGender;
-//                        if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                            cout << "Please enter valid character" << endl;
-//                            return;
-//                        }
-//                        else {
-//                            waitingList.front().gender = newGender;
-//                        }
-//                    }
-//                    else if (choice == 4) {
-//                        cout << "Please enter age" << endl;
-//                        int newAge;
-//                        cin >> newAge;
-//                        waitingList.front().age = newAge;
-//                    }
-//                    else if (choice == 5) {
-//                        cout << "Please enter governorate" << endl;
-//                        string newGovernorate;
-//                        getline(cin, newGovernorate);
-//                        waitingList.front().governorate = newGovernorate;
-//                    }
-//                    else if (choice == 6) {
-//                        cout << "Did you get vaccinated?" << endl;
-//                        char choiceForVaccination;
-//                        cin >> choiceForVaccination;
-//                        if (choiceForVaccination == 'Y' || choiceForVaccination == 'y') {
-//                            waitingList.front().vaccinated = true;
-//                            cout << "Did you recieve 1 dose or 2 doses?" << endl;
-//                            int choiceForNoOfDoses;
-//                            cin >> choiceForNoOfDoses;
-//                            if (choiceForNoOfDoses == 1) {
-//                                waitingList.front().received_both_doses = false;
-//                                User userToBeTransferred(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-//                                waitingList.pop();
-//                                firstDose.push_back(userToBeTransferred);
-//                            }
-//                            else if (choiceForNoOfDoses == 2) {
-//                                waitingList.front().received_both_doses = true;
-//                                User userToBeTransferred2(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-//                                waitingList.pop();
-//                                secondDose.push_back(userToBeTransferred2);
-//                            }
-//                            else {
-//                                cout << "Invalid choice" << endl;
-//                            }
-//                        }
-//                        else if (choiceForVaccination == 'N' || choiceForVaccination == 'n') {
-//                            return;
-//                        }
-//                        else {
-//                            cout << "Please enter valid choice" << endl;
-//                        }
-//                    }
-//                    else {
-//                        cout << "Wrong choice" << endl;
-//                    }
-//                    cout << "Do you want to edit another thing" << endl;
-//                    cin >> choiceForLoop;
-//                } while (choiceForLoop == 'Y' || choiceForLoop == 'y');
-//                while (!temp.empty()) {
-//                    User temp1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
-//                    waitingList.push(temp1);
-//                    temp.pop();
-//                }
-//            }
-//        }
-//       
-//    }
-//    else {
-//        cout << "Wrong whichData index" << endl;
-//    }*/
-//    queue<User>temp;
-//    int counterForFirstDose = 0, counterForSecondDose = 0;
-//
-//    for (int i = 0;i < firstDose.size();i++) {
-//        if (firstDose[i].national_id == nationalId) {
-//            char ChoiceForEditingAgain;
-//            int choice;
-//            do
-//            {
-//                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
-//                cin >> choice;
-//                cin.ignore();
-//                if (choice == 1) {
-//                    string newName;
-//                    cout << "PLease enter new Name" << endl;
-//                    getline(cin, newName);
-//                    firstDose[i].name = newName;
-//                }
-//                else if (choice == 2) {
-//                    string newPassword;
-//                    cout << "Please enter new password" << endl;
-//                    getline(cin, newPassword);
-//                    firstDose[i].password = newPassword;
-//                }
-//                else if (choice == 3) {
-//                    char newGender;
-//                    cout << "Please enter gender" << endl;
-//                    cin >> newGender;
-//                    cin.ignore();
-//                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                        cout << "Please enter valid character" << endl;
-//                        return;
-//                    }
-//                    else {
-//                        firstDose[i].gender = newGender;
-//                    }
-//
-//                }
-//                else if (choice == 4) {
-//                    int newAge;
-//                    cout << "Please enter updated age" << endl;
-//                    cin >> newAge;
-//                    cin.ignore();
-//                    firstDose[i].age = newAge;
-//                }
-//                else if (choice == 5) {
-//                    string newGovernorate;
-//                    cout << "please enter updated governorate" << endl;
-//                    getline(cin, newGovernorate);
-//                    firstDose[i].governorate = newGovernorate;
-//                }
-//                else if (choice == 6) {
-//                    char choiceForVaccine;
-//                    cout << "did you recieve the second dose?" << endl;
-//                    cin >> choiceForVaccine;
-//                    cin.ignore();
-//                    if (choiceForVaccine == 'Y' || choiceForVaccine == 'y') {
-//                        User userToBeTransferred(firstDose[i].name, firstDose[i].national_id, firstDose[i].password, firstDose[i].gender, firstDose[i].age, firstDose[i].governorate, firstDose[i].vaccinated, firstDose[i].received_both_doses);
-//                        firstDose.erase(firstDose.begin() + counterForFirstDose);
-//                        secondDose.push_back(userToBeTransferred);
-//                    }
-//                    else {
-//                        return;
-//                    }
-//                }
-//                else {
-//                    cout << "Invalid Choice" << endl;
-//                }
-//                cout << "Do you want to edit another info?" << endl;
-//                cin >> ChoiceForEditingAgain;
-//            } while (ChoiceForEditingAgain == 'Y' || ChoiceForEditingAgain == 'y');
-//            break;
-//
-//        }
-//    }
-//    for (int i = 0; i < secondDose.size();i++) {
-//        if (secondDose[i].get_national_id() == nationalId) {
-//            int choice;
-//            char choiceForEditing;
-//            do
-//            {
-//                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate" << endl;
-//                cin >> choice;
-//                cin.ignore();
-//                if (choice == 1) {
-//                    string newName;
-//                    cout << "Please enter new Name" << endl;
-//                    getline(cin, newName);
-//                    secondDose[i].name = newName;
-//                }
-//                else if (choice == 2) {
-//                    string newPassword;
-//                    cout << "Please enter new password" << endl;
-//                    getline(cin, newPassword);
-//                    secondDose[i].password = newPassword;
-//                }
-//                else if (choice == 3) {
-//                    char newGender;
-//                    cout << "Please enter Gender" << endl;
-//                    cin >> newGender;
-//                    cin.ignore();
-//                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                        cout << "Please enter valid character" << endl;
-//                        return;
-//                    }
-//                    else {
-//                        secondDose[i].gender = newGender;
-//                    }
-//                }
-//                else if (choice == 4) {
-//                    int newAge;
-//                    cout << "Please enter updated Age" << endl;
-//                    cin >> newAge;
-//                    cin.ignore();
-//                    secondDose[i].age = newAge;
-//                }
-//                else if (choice == 5) {
-//                    string newGovernorate;
-//                    cout << "Please enter updated governorate" << endl;
-//                    getline(cin, newGovernorate);
-//                    secondDose[i].governorate = newGovernorate;
-//                }
-//                else {
-//                    cout << "Invalid Choice" << endl;
-//                }
-//
-//                cout << "Do you want to edit another Info?" << endl;
-//                cin >> choiceForEditing;
-//
-//            } while (choiceForEditing == 'Y' || choiceForEditing == 'y');
-//            break;
-//        }
-//
-//    }
-//
-//    /*for (firstDoseIt = firstDose.begin();firstDoseIt < firstDose.end();firstDoseIt++) {
-//        if (nationalId == firstDoseIt->get_national_id()) {
-//            char ChoiceForEditingAgain;
-//            int choice;
-//            do
-//            {
-//                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
-//                cin >> choice;
-//                cin.ignore();
-//                if (choice == 1) {
-//                    string newName;
-//                    cout << "PLease enter new Name" << endl;
-//                    getline(cin, newName);
-//                    firstDoseIt->name = newName;
-//                }
-//                else if (choice == 2) {
-//                    string newPassword;
-//                    cout << "Please enter new password" << endl;
-//                    getline(cin, newPassword);
-//                    firstDoseIt->password = newPassword;
-//                }
-//                else if (choice == 3) {
-//                    char newGender;
-//                    cout << "Please enter gender" << endl;
-//                    cin >> newGender;
-//                    cin.ignore();
-//                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                        cout << "Please enter valid character" << endl;
-//                        return;
-//                    }
-//                    else {
-//                        firstDoseIt->gender = newGender;
-//                    }
-//
-//                }
-//                else if (choice == 4) {
-//                    int newAge;
-//                    cout << "Please enter updated age" << endl;
-//                    cin >> newAge;
-//                    cin.ignore();
-//                    firstDoseIt->age = newAge;
-//                }
-//                else if (choice == 5) {
-//                    string newGovernorate;
-//                    cout << "please enter updated governorate" << endl;
-//                    getline(cin, newGovernorate);
-//                    firstDoseIt->governorate = newGovernorate;
-//                }
-//                else if (choice == 6) {
-//                    char choiceForVaccine;
-//                    cout << "did you recieve the second dose?" << endl;
-//                    cin >> choiceForVaccine;
-//                    cin.ignore();
-//                    if (choiceForVaccine == 'Y' || choiceForVaccine == 'y') {
-//                        User userToBeTransferred(firstDoseIt->name, firstDoseIt->national_id, firstDoseIt->password, firstDoseIt->gender, firstDoseIt->age, firstDoseIt->governorate, firstDoseIt->vaccinated, firstDoseIt->received_both_doses);
-//                        firstDose.erase(firstDose.begin() + counterForFirstDose);
-//                        secondDose.push_back(userToBeTransferred);
-//                    }
-//                    else {
-//                        return;
-//                    }
-//                }
-//                else {
-//                    cout << "Invalid Choice" << endl;
-//                }
-//                cout << "Do you want to edit another info?" << endl;
-//                cin >> ChoiceForEditingAgain;
-//            } while (ChoiceForEditingAgain == 'Y' || ChoiceForEditingAgain == 'y');
-//            break;
-//
-//        }
-//        else {
-//            counterForFirstDose++;
-//        }
-//    }
-//    for (secondDoseIt = secondDose.begin();secondDoseIt < secondDose.end();secondDoseIt++) {
-//        if (nationalId == secondDoseIt->get_national_id()) {
-//            int choice;
-//            char choiceForEditing;
-//            do
-//            {
-//                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate" << endl;
-//                cin >> choice;
-//                cin.ignore();
-//                if (choice == 1) {
-//                    string newName;
-//                    cout << "Please enter new Name" << endl;
-//                    getline(cin, newName);
-//                    secondDoseIt->name = newName;
-//                }
-//                else if (choice == 2) {
-//                    string newPassword;
-//                    cout << "Please enter new password" << endl;
-//                    getline(cin, newPassword);
-//                    secondDoseIt->password = newPassword;
-//                }
-//                else if (choice == 3) {
-//                    char newGender;
-//                    cout << "Please enter Gender" << endl;
-//                    cin >> newGender;
-//                    cin.ignore();
-//                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                        cout << "Please enter valid character" << endl;
-//                        return;
-//                    }
-//                    else {
-//                        secondDoseIt->gender = newGender;
-//                    }
-//                }
-//                else if (choice == 4) {
-//                    int newAge;
-//                    cout << "Please enter updated Age" << endl;
-//                    cin >> newAge;
-//                    cin.ignore();
-//                    secondDoseIt->age = newAge;
-//                }
-//                else if (choice == 5) {
-//                    string newGovernorate;
-//                    cout << "Please enter updated governorate" << endl;
-//                    getline(cin, newGovernorate);
-//                    secondDoseIt->governorate = newGovernorate;
-//                }
-//                else {
-//                    cout << "Invalid Choice" << endl;
-//                }
-//
-//                cout << "Do you want to edit another Info?" << endl;
-//                cin >> choiceForEditing;
-//
-//            } while (choiceForEditing == 'Y' || choiceForEditing == 'y');
-//        }
-//        else {
-//            counterForSecondDose++;
-//        }
-//    }*/
-//    while (!waitingList.empty()) {
-//        string newName, newPassword, newGovernorate;
-//        char newGender;
-//        int newAge;
-//        if (waitingList.front().get_national_id() != nationalId) {
-//            User temporaryUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-//            temp.push(temporaryUser);
-//            waitingList.pop();
-//        }
-//        else {
-//            char choiceForLoop;
-//            int choice;
-//            do {
-//                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
-//                cin >> choice;
-//                cin.ignore();
-//                if (choice == 1) {
-//                    cout << "Please enter name" << endl;
-//                    getline(cin, newName);
-//                    waitingList.front().name = newName;
-//                }
-//                else if (choice == 2) {
-//                    cout << "Please enter password" << endl;
-//                    getline(cin, newPassword);
-//                    waitingList.front().password = newPassword;
-//                }
-//                else if (choice == 3) {
-//                    cout << "Please enter gender" << endl;
-//                    cin >> newGender;
-//                    cin.ignore();
-//                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
-//                        cout << "Please enter valid character" << endl;
-//                        return;
-//                    }
-//                    else {
-//                        waitingList.front().gender = newGender;
-//                    }
-//                }
-//                else if (choice == 4) {
-//                    cout << "Please enter age" << endl;
-//                    cin >> newAge;
-//                    cin.ignore();
-//                    waitingList.front().age = newAge;
-//                }
-//                else if (choice == 5) {
-//                    cout << "Please enter governorate" << endl;
-//                    getline(cin, newGovernorate);
-//                    waitingList.front().governorate = newGovernorate;
-//                }
-//                else if (choice == 6) {
-//                    cout << "Did you get vaccinated?" << endl;
-//                    char choiceForVaccination;
-//                    cin >> choiceForVaccination;
-//                    cin.ignore();
-//                    if (choiceForVaccination == 'Y' || choiceForVaccination == 'y') {
-//                        waitingList.front().vaccinated = true;
-//                        cout << "Did you recieve 1 dose or 2 doses?" << endl;
-//                        int choiceForNoOfDoses;
-//                        cin >> choiceForNoOfDoses;
-//                        cin.ignore();
-//                        if (choiceForNoOfDoses == 1) {
-//                            waitingList.front().received_both_doses = false;
-//                            User userToBeTransferred(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-//                            waitingList.pop();
-//                            firstDose.push_back(userToBeTransferred);
-//                        }
-//                        else if (choiceForNoOfDoses == 2) {
-//                            waitingList.front().received_both_doses = true;
-//                            User userToBeTransferred2(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-//                            waitingList.pop();
-//                            secondDose.push_back(userToBeTransferred2);
-//                        }
-//                        else {
-//                            cout << "Invalid choice" << endl;
-//                        }
-//                    }
-//                    else if (choiceForVaccination == 'N' || choiceForVaccination == 'n') {
-//                        break;
-//                    }
-//                    else {
-//                        cout << "Please enter valid choice" << endl;
-//                    }
-//                }
-//                else {
-//                    cout << "Wrong choice" << endl;
-//                }
-//                cout << "Do you want to edit another thing" << endl;
-//                cin >> choiceForLoop;
-//                cin.ignore();
-//            } while (choiceForLoop == 'Y' || choiceForLoop == 'y');
-//            break;
-//            while (!temp.empty()) {
-//                User temp1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
-//                waitingList.push(temp1);
-//                temp.pop();
-//            }
-//        }
-//    }
-//
-//
-//}
-//void User::deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User> &waitingList, string nationalId, map<string, User>& user_map) {
-//    char choice;
-//    int counterForFirstDose = 0, counterForSecondDose = 0;
-//    User temporaryUser;
-//    queue<User> temp;
-// 
-//    cout << "Do you want to delete your record" << endl;
-//    cin >> choice;
-//    cin.ignore();
-//    
-//    
-//
-//    if (choice == 'y' || choice == 'Y') {
-//        for (int i = 0; i < firstDose.size();i++) {
-//            if (firstDose[i].get_national_id() == nationalId) {
-//                firstDose.erase(firstDose.begin() + i);
-//                user_map.erase(nationalId);
-//                break;
-//            }
-//        }
-//
-//        for (int i = 0; i < secondDose.size();i++) {
-//            if (secondDose[i].get_national_id() == nationalId) {
-//                secondDose.erase(secondDose.begin() + i);
-//                user_map.erase(nationalId);
-//                break;
-//            }
-//        }
-//            while (!waitingList.empty()) {
-//                if (waitingList.front().national_id != nationalId) {
-//                    User tempUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-//                    temp.push(tempUser);
-//                    waitingList.pop();
-//                }
-//                else {
-//                    waitingList.pop();
-//                }
-//                while (!temp.empty()) {
-//                    User tempUser1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
-//                    waitingList.push(tempUser1);
-//                    temp.pop();
-//                }
-//            }
-//            user_map.erase(nationalId);
-//
-//        
-//      
-//    }
-//    else if (choice == 'n' || choice == 'N') {
-//        cout << "Okay" << endl;
-//    }
-//    else {
-//        cout << "Invalid Choice" << endl;
-//    }
-//}
+void User::EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, map<string, User>& user_map, string nationalId) {
+   
+    queue<User>temp;
+    char choiceForVaccineFirstDose, choiceForVaccineWaitingList, ChoiceForEditingFirstDose, choiceForEditingSecondDose, choiceorEditingWaitingList;
+    int choiceForFirstDose, choiceForSecondDose, choiceForWaitingList;
+
+    for (int i = 0; i < secondDose.size();i++) {
+        if (secondDose[i].get_national_id() == nationalId) {
+            do
+            {
+                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate" << endl;
+                cin >> choiceForSecondDose;
+                cin.ignore();
+                if (choiceForSecondDose == 1) {
+                    string newName;
+                    cout << "Please enter new Name" << endl;
+                    getline(cin, newName);
+                    secondDose[i].name = newName;
+                    user_map[nationalId] = secondDose[i];
+                }
+                else if (choiceForSecondDose == 2) {
+                    string newPassword;
+                    cout << "Please enter new password" << endl;
+                    getline(cin, newPassword);
+                    secondDose[i].password = newPassword;
+                    user_map[nationalId] = secondDose[i];
+
+                }
+                else if (choiceForSecondDose == 3) {
+                    char newGender;
+                    cout << "Please enter Gender" << endl;
+                    cin >> newGender;
+                    cin.ignore();
+                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
+                        cout << "Please enter valid character" << endl;
+                        return;
+                    }
+                    else {
+                        secondDose[i].gender = newGender;
+                        user_map[nationalId] = secondDose[i];
+
+                    }
+                }
+                else if (choiceForSecondDose == 4) {
+                    int newAge;
+                    cout << "Please enter updated Age" << endl;
+                    cin >> newAge;
+                    cin.ignore();
+                    secondDose[i].age = newAge;
+                    user_map[nationalId] = secondDose[i];
+
+                }
+                else if (choiceForSecondDose == 5) {
+                    string newGovernorate;
+                    cout << "Please enter updated governorate" << endl;
+                    getline(cin, newGovernorate);
+                    secondDose[i].governorate = newGovernorate;
+                    user_map[nationalId] = secondDose[i];
+
+                }
+                else {
+                    cout << "Invalid Choice" << endl;
+                }
+
+                cout << "Do you want to edit another Info?" << endl;
+                cin >> choiceForEditingSecondDose;
+
+            } while (choiceForEditingSecondDose == 'Y' || choiceForEditingSecondDose == 'y');
+            break;
+        }
+
+    }
+    
+
+    for (int i = 0;i < firstDose.size();i++) {
+        if (firstDose[i].national_id == nationalId) {
+            do
+            {
+                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
+                cin >> choiceForFirstDose;
+                cin.ignore();
+                if (choiceForFirstDose == 1) {
+                    string newName;
+                    cout << "PLease enter new Name" << endl;
+                    getline(cin, newName);
+                    firstDose[i].name = newName;  
+                    user_map[nationalId] = firstDose[i];
+                }
+                else if (choiceForFirstDose == 2) {
+                    string newPassword;
+                    cout << "Please enter new password" << endl;
+                    getline(cin, newPassword);
+                    firstDose[i].password = newPassword;
+                    user_map[nationalId] = firstDose[i];
+                }
+                else if (choiceForFirstDose == 3) {
+                    char newGender;
+                    cout << "Please enter gender" << endl;
+                    cin >> newGender;
+                    cin.ignore();
+                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
+                        cout << "Please enter valid character" << endl;
+                        return;
+                    }
+                    else {
+                        firstDose[i].gender = newGender;
+                        user_map[nationalId] = firstDose[i];
+                    }
+
+                }
+                else if (choiceForFirstDose == 4) {
+                    int newAge;
+                    cout << "Please enter updated age" << endl;
+                    cin >> newAge;
+                    cin.ignore();
+                    firstDose[i].age = newAge;
+                    user_map[nationalId] = firstDose[i];
+                }
+                else if (choiceForFirstDose == 5) {
+                    string newGovernorate;
+                    cout << "please enter updated governorate" << endl;
+                    getline(cin, newGovernorate);
+                    firstDose[i].governorate = newGovernorate;
+                    user_map[nationalId] = firstDose[i];
+                }
+                else if (choiceForFirstDose == 6) {
+                    cout << "did you recieve the second dose?" << endl;
+                    cin >> choiceForVaccineFirstDose;
+                    cin.ignore();
+                    if (choiceForVaccineFirstDose == 'Y' || choiceForVaccineFirstDose == 'y') {
+                        firstDose[i].received_both_doses = true;
+                        user_map[nationalId] = firstDose[i];
+                        User userToBeTransferred(firstDose[i].name, firstDose[i].national_id, firstDose[i].password, firstDose[i].gender, firstDose[i].age, firstDose[i].governorate, firstDose[i].vaccinated, firstDose[i].received_both_doses);
+                        secondDose.push_back(userToBeTransferred);
+                        firstDose.erase(firstDose.begin() + i);
+                    }
+                    else {
+                        return;
+                    }
+                }
+                else {
+                    cout << "Invalid Choice" << endl;
+                }
+                cout << "Do you want to edit another info?" << endl;
+                cin >> ChoiceForEditingFirstDose;
+            } while (ChoiceForEditingFirstDose == 'Y' || ChoiceForEditingFirstDose == 'y');
+            break;
+           /* if (ChoiceForEditingFirstDose != 'Y' && ChoiceForEditingFirstDose != 'y') {
+                if (choiceForVaccineFirstDose == 'Y' || choiceForVaccineFirstDose == 'y') {
+                    
+                }
+            }*/
+
+        }
+
+    }
+    
+
+   
+    while (!waitingList.empty()) {
+        string newName, newPassword, newGovernorate;
+        char newGender;
+        int newAge;
+        if (waitingList.front().get_national_id() != nationalId) {
+            User temporaryUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
+            temp.push(temporaryUser);
+            waitingList.pop();
+        }
+        else {
+           
+            do {
+                cout << "Please enter 1 for name, 2 for password, 3 for gender, 4 for age, 5 for governorate or 6 to edit vaccination information" << endl;
+                cin >> choiceForWaitingList;
+                cin.ignore();
+                if (choiceForWaitingList == 1) {
+                    cout << "Please enter name" << endl;
+                    getline(cin, newName);
+                    waitingList.front().name = newName;
+                    user_map[nationalId] = waitingList.front();
+                }
+                else if (choiceForWaitingList == 2) {
+                    cout << "Please enter password" << endl;
+                    getline(cin, newPassword);
+                    waitingList.front().password = newPassword;
+                    user_map[nationalId] = waitingList.front();
+
+                }
+                else if (choiceForWaitingList == 3) {
+                    cout << "Please enter gender" << endl;
+                    cin >> newGender;
+                    cin.ignore();
+                    if (newGender != 'F' && newGender != 'f' && newGender != 'M' && newGender != 'm') {
+                        cout << "Please enter valid character" << endl;
+                        return;
+                    }
+                    else {
+                        waitingList.front().gender = newGender;
+                        user_map[nationalId] = waitingList.front();
+
+                    }
+                }
+                else if (choiceForWaitingList == 4) {
+                    cout << "Please enter age" << endl;
+                    cin >> newAge;
+                    cin.ignore();
+                    waitingList.front().age = newAge;
+                    user_map[nationalId] = waitingList.front();
+
+                }
+                else if (choiceForWaitingList == 5) {
+                    cout << "Please enter governorate" << endl;
+                    getline(cin, newGovernorate);
+                    waitingList.front().governorate = newGovernorate;
+                    user_map[nationalId] = waitingList.front();
+
+                }
+                else if (choiceForWaitingList == 6) {
+                    cout << "Did you get vaccinated?" << endl;
+                    cin >> choiceForVaccineWaitingList;
+                    cin.ignore();
+                    if (choiceForVaccineWaitingList == 'Y' || choiceForVaccineWaitingList == 'y') {
+                        waitingList.front().vaccinated = true;
+                        cout << "Did you recieve 1 dose or 2 doses?" << endl;
+                        int choiceForNoOfDoses;
+                        cin >> choiceForNoOfDoses;
+                        cin.ignore();
+                        if (choiceForNoOfDoses == 1) {
+                            waitingList.front().received_both_doses = false;
+                            User userToBeTransferred(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
+                            firstDose.push_back(userToBeTransferred);
+                        }
+                        else if (choiceForNoOfDoses == 2) {
+                            waitingList.front().received_both_doses = true;
+                            User userToBeTransferred2(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
+                            secondDose.push_back(userToBeTransferred2);
+                        }
+                        else {
+                            cout << "Invalid choice" << endl;
+                        }
+                    }
+                    else if (choiceForVaccineWaitingList == 'N' || choiceForVaccineWaitingList == 'n') {
+                        break;
+                    }
+                    else {
+                        cout << "Please enter valid choice" << endl;
+                    }
+                }
+                else {
+                    cout << "Wrong choice" << endl;
+                }
+                cout << "Do you want to edit another thing" << endl;
+                cin >> choiceorEditingWaitingList;
+                cin.ignore();
+            } while (choiceorEditingWaitingList == 'Y' || choiceorEditingWaitingList == 'y');
+            break;
+            if (choiceorEditingWaitingList != 'Y' && choiceorEditingWaitingList != 'y') {
+                if (choiceForVaccineWaitingList == 'Y' || choiceForVaccineWaitingList == 'y') {
+                    waitingList.pop();
+                }
+            }
+            while (!temp.empty()) {
+                User temp1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
+                waitingList.push(temp1);
+                temp.pop();
+            }
+        }
+    }
+
+
+}
+void User::deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User> &waitingList, string nationalId, map<string, User>& user_map) {
+    char choice;
+    int counterForFirstDose = 0, counterForSecondDose = 0;
+    User temporaryUser;
+    queue<User> temp;
+ 
+    cout << "Do you want to delete your record" << endl;
+    cin >> choice;
+    cin.ignore();
+    
+    
+
+    if (choice == 'y' || choice == 'Y') {
+        for (int i = 0; i < firstDose.size();i++) {
+            if (firstDose[i].get_national_id() == nationalId) {
+                firstDose.erase(firstDose.begin() + i);
+                user_map.erase(nationalId);
+                break;
+            }
+        }
+
+        for (int i = 0; i < secondDose.size();i++) {
+            if (secondDose[i].get_national_id() == nationalId) {
+                secondDose.erase(secondDose.begin() + i);
+                user_map.erase(nationalId);
+                break;
+            }
+        }
+            while (!waitingList.empty()) {
+                if (waitingList.front().national_id != nationalId) {
+                    User tempUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
+                    temp.push(tempUser);
+                    waitingList.pop();
+                }
+                else {
+                    waitingList.pop();
+                }
+                while (!temp.empty()) {
+                    User tempUser1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
+                    waitingList.push(tempUser1);
+                    temp.pop();
+                }
+            }
+            user_map.erase(nationalId);
+
+        
+      
+    }
+    else if (choice == 'n' || choice == 'N') {
+        cout << "Okay" << endl;
+    }
+    else {
+        cout << "Invalid Choice" << endl;
+    }
+}
 
 
 User::~User() {
@@ -853,127 +530,139 @@ Admin::Admin() {
 
 }
 //to calculate some statistics 
-void Admin::Statistics(vector<User>firstDose,vector<User>secondDose,queue<User>waitingList) {
+void Admin::Statistics(vector<User>firstDose,vector<User>secondDose,queue<User>waitingList, map<string, User> user_map) {
 	double firstDosePct, secondDosePct, femalePct, malePct;
-	double firstRangePct, secondRangePct, thirdRangePct, fourthRangePct, fifthRangePct;
-	int fCount = 0; int mCount = 0;
-	int firstRange1 = 0; int secondRange1 = 0; int thirdRange1 = 0; int fourthRange1 = 0; int fifthRange1 = 0;
-	int firstRange2 = 0; int secondRange2 = 0; int thirdRange2 = 0; int fourthRange2 = 0; int fifthRange2 = 0;
-	int firstRange = 0; int secondRange = 0; int thirdRange = 0; int fourthRange = 0; int fifthRange = 0;
-	/*vector<User>::iterator it;
-	vector<User>::iterator it1;
-	vector<User>::iterator it2;
-	vector<User>::iterator it3;*/
+	double firstRangePct=0.0, secondRangePct=0, thirdRangePct=0, fourthRangePct=0, fifthRangePct=0;
+    double allUsers = user_map.size();
+	int fCount = 0, mCount = 0;
+	int firstRange1 = 0, secondRange1 = 0, thirdRange1 = 0, fourthRange1 = 0, fifthRange1 = 0;
+	int firstRange2 = 0, secondRange2 = 0, thirdRange2 = 0, fourthRange2 = 0,  fifthRange2 = 0;
+	int firstRange = 0, secondRange = 0, thirdRange = 0, fourthRange = 0, fifthRange = 0;
+	
+
 
 	//calculate the pct of first and second dose
-	firstDosePct = (firstDose.size() / (firstDose.size() + secondDose.size() + waitingList.size()))*100.00;
-	secondDosePct = (secondDose.size()/ (firstDose.size() + secondDose.size() + waitingList.size()))*100.00;
+	firstDosePct = ((double)firstDose.size() / allUsers)*100.0;
+	secondDosePct = ((double)secondDose.size()/ allUsers)*100.00;
 
 	//filter males and females from first dose vector
-	/*it = firstDose.begin();
-	it1 = secondDose.begin();*/
+	
 	for (int i= 0; i < firstDose.size(); i++) {
-		if (firstDose[i].get_gender() == 'M') {
+		if (firstDose[i].get_gender() == 'M'|| firstDose[i].get_gender() == 'm') {
 			mCount++;
 		}
-		else if (firstDose[i].get_gender() == 'F') {
-			fCount++;
-		}
-	}
-	//filter males and females from second dose vector
-	for (int i = 0; i < secondDose.size(); i++) {
-		if (secondDose[i].get_gender() == 'M') {
-			mCount++;
-		}
-		else if (secondDose[i].get_gender() == 'F') {
-			fCount++;
-		}
-	}
-	// filter males and females from waiting list
-	queue<User> copy = waitingList;
-	while (!copy.empty())
-	{
-		if (copy.front().get_gender() == 'M') {
-			mCount++;
-			copy.pop();
-		}
-		else if (copy.front().get_gender() == 'F') {
-			fCount++;
-			copy.pop();
-		}
-	}
-	//calculate the pct of males and females
-	malePct = (mCount / (firstDose.size() + secondDose.size() + waitingList.size()))*100.00;
-	femalePct = (fCount / (firstDose.size() + secondDose.size() + waitingList.size()))*100.00;
+        else if (firstDose[i].get_gender() == 'F' || firstDose[i].get_gender() == 'f') {
+            fCount++;
+        }
+    }
+    //filter males and females from second dose vector
+    for (int i = 0; i < secondDose.size(); i++) {
+        if (secondDose[i].get_gender() == 'M' || secondDose[i].get_gender() == 'm') {
+            mCount++;
+        }
+        else if (secondDose[i].get_gender() == 'F' || secondDose[i].get_gender() == 'f') {
+            fCount++;
+        }
+    }
+    // filter males and females from waiting list
+    queue<User> copy = waitingList;
+    while (!copy.empty())
+    {
+        if (copy.front().get_gender() == 'M' || copy.front().get_gender() == 'm') {
+            mCount++;
+            copy.pop();
+        }
+        else if (copy.front().get_gender() == 'F' || copy.front().get_gender() == 'f') {
+            fCount++;
+            copy.pop();
+        }
+    }
+    //calculate the pct of males and females
+    malePct = ((double)mCount / allUsers) * 100.00;
+    femalePct = ((double)fCount / allUsers) * 100.00;
 
 
-	//filter each age group from second dose vector
-	for (int i = 0; i < secondDose.size(); i++) {
-		if (secondDose[i].get_age() >= 75) {
-			firstRange++;
-		}
-		else if (secondDose[i].get_age() >= 65 && secondDose[i].get_age() <= 74) {
-			secondRange++;
-		}
-		else if (secondDose[i].get_age() >= 50 && secondDose[i].get_age() <= 64) {
-			thirdRange++;
-		}
-		else if (secondDose[i].get_age() >= 40 && secondDose[i].get_age() <= 49) {
-			fourthRange++;
-		}
-		else if (secondDose[i].get_age() >= 18 && secondDose[i].get_age() <= 39) {
-			fifthRange++;
-		}
-	}
-	//filter each age group from first dose vector
-	for (int i = 0; i < firstDose.size(); i++) {
-		if (firstDose[i].get_age() >= 75) {
-			firstRange1++;
-		}
-		else if (firstDose[i].get_age() >= 65 && firstDose[i].get_age() <= 74) {
-			secondRange1++;
-		}
-		else if (firstDose[i].get_age() >= 50 && firstDose[i].get_age() <= 64) {
-			thirdRange1++;
-		}
-		else if (firstDose[i].get_age() >= 40 && firstDose[i].get_age() <= 49) {
-			fourthRange1++;
-		}
-		else if (firstDose[i].get_age() >= 18 && firstDose[i].get_age() <= 39) {
-			fifthRange1++;
-		}
-	}
-	//filter each age group from waiting list
-	queue<User> copy_1 = waitingList;
-	while (!copy_1.empty()) {
-		if (copy_1.front().get_age() >= 75) {
-			firstRange2++;
-			copy_1.pop();
-		}
-		else if (copy_1.front().get_age() >= 65 && copy_1.front().get_age() <= 74) {
-			secondRange2++;
-			copy_1.pop();
-		}
-		else if (copy_1.front().get_age() >= 50 && copy_1.front().get_age() <= 64) {
-			thirdRange2++;
-			copy_1.pop();
-		}
-		else if (copy_1.front().get_age() && copy_1.front().get_age() <= 49) {
-			fourthRange2++;
-			copy_1.pop();
-		}
-		else if (copy_1.front().get_age() >= 18 && copy_1.front().get_age() <= 39) {
-			fifthRange2++;
-			copy_1.pop();
-		}
-	}
-	//calculate the pct of each age group
-	fifthRangePct = (fifthRange / (fifthRange + fifthRange1 + fifthRange2)) * 100.00;
-	fourthRangePct = (fourthRange / (fourthRange + fourthRange1 + fourthRange2)) * 100.00;
-	thirdRangePct = (thirdRange / (thirdRange + thirdRange1 + thirdRange2)) * 100.00;
-	secondRangePct = (secondRange / (secondRange + secondRange1 + secondRange2)) * 100.00;
-	firstRangePct = (firstRange / (firstRange + firstRange1 + firstRange2)) * 100.00;
+    //filter each age group from second dose vector
+    for (int i = 0; i < secondDose.size(); i++) {
+        if (secondDose[i].get_age() >= 75) {
+            firstRange++;
+        }
+        else if (secondDose[i].get_age() >= 65 && secondDose[i].get_age() <= 74) {
+            secondRange++;
+        }
+        else if (secondDose[i].get_age() >= 50 && secondDose[i].get_age() <= 64) {
+            thirdRange++;
+        }
+        else if (secondDose[i].get_age() >= 40 && secondDose[i].get_age() <= 49) {
+            fourthRange++;
+        }
+        else if (secondDose[i].get_age() >= 18 && secondDose[i].get_age() <= 39) {
+            fifthRange++;
+        }
+    }
+    //filter each age group from first dose vector
+    for (int i = 0; i < firstDose.size(); i++) {
+        if (firstDose[i].get_age() >= 75) {
+            firstRange1++;
+        }
+        else if (firstDose[i].get_age() >= 65 && firstDose[i].get_age() <= 74) {
+            secondRange1++;
+        }
+        else if (firstDose[i].get_age() >= 50 && firstDose[i].get_age() <= 64) {
+            thirdRange1++;
+        }
+        else if (firstDose[i].get_age() >= 40 && firstDose[i].get_age() <= 49) {
+            fourthRange1++;
+        }
+        else if (firstDose[i].get_age() >= 18 && firstDose[i].get_age() <= 39) {
+            fifthRange1++;
+        }
+    }
+    //filter each age group from waiting list
+    queue<User> copy_1 = waitingList;
+    while (!copy_1.empty()) {
+        if (copy_1.front().get_age() >= 75) {
+            firstRange2++;
+            copy_1.pop();
+        }
+        else if (copy_1.front().get_age() >= 65 && copy_1.front().get_age() <= 74) {
+            secondRange2++;
+            copy_1.pop();
+        }
+        else if (copy_1.front().get_age() >= 50 && copy_1.front().get_age() <= 64) {
+            thirdRange2++;
+            copy_1.pop();
+        }
+        else if (copy_1.front().get_age() >=40 && copy_1.front().get_age() <= 49) {
+            fourthRange2++;
+            copy_1.pop();
+        }
+        else if (copy_1.front().get_age() >= 18 && copy_1.front().get_age() <= 39) {
+            fifthRange2++;
+            copy_1.pop();
+        }
+    }
+    //calculate the pct of each age group
+    if ((firstRange + firstRange1 + firstRange2) != 0) {
+        firstRangePct = ((double)firstRange / ((double)(firstRange + firstRange1 + firstRange2))) * 100.00;
 
+    }
+    if ((secondRange + secondRange1 + secondRange2) != 0){
+        secondRangePct = ((double)secondRange / ((double)(secondRange + secondRange1 + secondRange2))) * 100.00;
+
+    }
+    if ((thirdRange + thirdRange1 + thirdRange2) != 0) {
+        thirdRangePct = ((double)thirdRange / ((double)(thirdRange + thirdRange1 + thirdRange2))) * 100.00;
+
+    }
+    if ((fourthRange + fourthRange1 + fourthRange2) != 0) {
+        fourthRangePct = ((double)fourthRange / ((double)(fourthRange + fourthRange1 + fourthRange2))) * 100.00;
+
+    }
+    if ((fifthRange + fifthRange1 + fifthRange2) != 0) {
+        fifthRangePct = ((double)fifthRange / ((double)(fifthRange + fifthRange1 + fifthRange2))) * 100.00;
+
+    }
 	cout << "Percentage of people that have received the first dose : " << firstDosePct << "%" << endl;
 	cout << "Percentage of people that have received the second dose : " << secondDosePct << "%" << endl;
 	cout << "Percentage of females : " << femalePct << "%" << endl;

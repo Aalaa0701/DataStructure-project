@@ -41,13 +41,12 @@ public:
     void set_received_both_doses(bool received_both_doses);
 
     //Functions
-   // bool is_national_id_used(string national_id, map<string, User> user_map);
     void add_user(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map);
     void display_user_data(vector<User> firstDose, vector<User> secondDose, queue<User> waiting_list, map<string, User> user_map, string& nationalId);
    
     //Edit user data
-    /*void EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId);
-    void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map);*/
+    void EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, map<string, User>& user_map, string nationalId);
+    void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map);
 
     // Setters
 
@@ -61,7 +60,7 @@ class Admin
     public:
         Admin();
         //~Admin();
-        void Statistics(vector<User>, vector<User>, queue<User>);
+        void Statistics(vector<User>, vector<User>, queue<User>, map<string, User>);
         void ViewRecord(map<string, User> user_map);
         void DeleteRecord(map<string, User>& user_map);
         void FilteredRecords(vector<User>firstDose, vector<User>secondDose);
