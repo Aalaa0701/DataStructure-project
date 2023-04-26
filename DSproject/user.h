@@ -66,5 +66,7 @@ class Admin
         void DeleteRecord(map<string, User>& user_map);
         void FilteredRecords(vector<User>firstDose, vector<User>secondDose);
         void OrderedByAge(vector<User>firstDose, vector<User>secondDose);
+        void view_record(queue<User>waitingList);
+        
     };
 

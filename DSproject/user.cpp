@@ -985,6 +985,7 @@ void Admin::Statistics(vector<User>firstDose,vector<User>secondDose,queue<User>w
 	cout << "Ages from 18 to 39 that have been fully vaccinated : " << fifthRangePct << "%" << endl;
 
 }
+// view records of users
 void Admin::ViewRecord(map<string, User> user_map) {
     if (user_map.empty())
         cout << "there is no records to view.";
@@ -1095,6 +1096,7 @@ void Admin::DeleteRecord(map<string, User>& user_map) {
     }
 
 }
+// filterRecords by no. of doses or age
 void Admin::FilteredRecords(vector<User>firstDose, vector<User>secondDose) {
     vector<User>::iterator it;
     int numOfDose;
@@ -1132,4 +1134,18 @@ void Admin::OrderedByAge(vector<User>firstDose, vector<User>secondDose) {
         cout << "Age:" << i->get_age() << "\t" << "National_id:" << "\t" << i->get_national_id() << "\t" << "Name:" << "\t" << i->get_name() << "\t" << "Gender:" << "\t" << i->get_gender() << "\t" << "Governorate:" << "\t" << i->get_governorate() << endl;
     }
 }
+//view record in waiting list
+void Admin::view_record(queue<User>waitingList)
+{
 
+
+    User user1 = waitingList.front();
+
+    cout << user1.get_name() << endl;
+    cout << user1.get_national_id() << endl;
+    cout << user1.get_age() << endl;
+    cout << user1.get_gender() << endl;
+    cout << user1.get_governorate() << endl;
+
+
+}
