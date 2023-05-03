@@ -63,34 +63,36 @@ public:
 };
 
 map<string, User> user_map;
-
+void adduser() {
+    cout << "add user" << endl;
+}
 
 void display_user_data() {
-    string  national_id; 
+    string  national_id;
     string  password;
     bool if_exist = true;
-	while (if_exist == true)
-	{
+    while (if_exist == true)
+    {
 
 
-		cout << "Enter national ID (13 digits) :";
-		getline(cin, national_id);
+        cout << "Enter national ID (13 digits) :";
+        getline(cin, national_id);
 
-		while (national_id.length() != 13)
-		{
-			cout << "Please,Enter national ID (13 digits) : ";
-			getline(cin, national_id);
-		}
-		cout << "Enter password :";
-		getline(cin, password);
+        while (national_id.length() != 13)
+        {
+            cout << "Please,Enter national ID (13 digits) : ";
+            getline(cin, national_id);
+        }
+        cout << "Enter password :";
+        getline(cin, password);
 
-		if (user_map.find(national_id)!=user_map.end())
-		{ 
+        if (user_map.find(national_id) != user_map.end())
+        {
 
             if (password == user_map[national_id].get_password())
             {
 
-                cout <<"your name is:"<< user_map[national_id].get_name() << endl;
+                cout << "your name is:" << user_map[national_id].get_name() << endl;
                 cout << "your  national ID is:" << user_map[national_id].get_national_id() << endl;
                 cout << "your gender is:" << user_map[national_id].get_gender() << endl;
                 cout << "your age is:" << user_map[national_id].get_age() << endl;
@@ -103,20 +105,34 @@ void display_user_data() {
             {
                 cout << "Please try again , Your password is not true." << endl;
             }
-			  
-		}
-        else 
+
+        }
+        else
         {
             cout << " Please try again ,  Your national ID is not exist." << endl;
+            cout << "Choice one of three options :" << endl;
+            cout << "1-Option one :Try again." << endl;
+            cout << "2-Option one :Add user." << endl;
+            cout << "3-Option one :Exit." << endl;
+            cout << "Enter number of option that you want:" << endl;
+            int num_of_option;
+            cin >> num_of_option;
+            cin.ignore();
+            if (num_of_option == 2) {
+                adduser();
+            }
+            else if (num_of_option == 3) {
+                if_exist = false;
+            }
+            
+        
         }
 
-	}
+    }
 }
 int main() {
-	
-    user_map["0123456789000"] =User("Ali","0123456789000","123456789",'F', 18, "egpyt", false, false);
+    user_map  ["0123456789000"]= User("ali","0123456789000","123456789",'f',18,"giza",false,false);
     display_user_data();
-    system("pause");
-	
-	return 0;
+    
+    return 0;
 }
