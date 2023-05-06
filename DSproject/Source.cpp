@@ -102,9 +102,6 @@ int main() {
 					}
 					delete temp;
 				}
-				else if (choiceForUser == 3) {
-
-				}
 				else {
 					break;
 				}

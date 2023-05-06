@@ -73,13 +73,7 @@ void User::add_user(vector<User>& firstDose, vector<User>& secondDose, queue<Use
     getline(cin, name);
 
 
-    /*do
-    {
-        cout << "Enter national ID (13 digits): ";
-        getline(cin, national_id);
-
-    } while (national_id.length() != 13 || !all_of(national_id.begin(), national_id.end(), ::isdigit) || user_map.find(national_id) != user_map.end());*/
-
+  
     cout << "Enter national ID (13 digits): ";
     getline(cin, national_id);
     while (national_id.length() != 13 || !all_of(national_id.begin(), national_id.end(), ::isdigit) || user_map.find(national_id) != user_map.end())
@@ -174,18 +168,33 @@ void User::display_user_data(vector<User> firstDose, vector<User> secondDose, qu
                 cout << "your governorate is:" << user_map[national_id].get_governorate() << endl;
                 cout << "If you are vaccinated:" << user_map[national_id].is_vaccinated() << endl;
                 cout << "IF you have received both doses:" << user_map[national_id].has_received_both_doses() << endl;
-                nationalId = national_id;
                 if_exist = false;
             }
             else
             {
-                cout << "Please try again , Your password or national Id isn't correct" << endl;
+                cout << "Please try again , Your password is not true." << endl;
             }
 
         }
         else
         {
-            cout << "Please try again , Your password or national Id isn't correct" << endl;
+            cout << " Please try again ,  Your national ID is not exist." << endl;
+            cout << "Choice one of three options :" << endl;
+            cout << "1-Option one :Try again." << endl;
+            cout << "2-Option one :Add user." << endl;
+            cout << "3-Option one :Exit." << endl;
+            cout << "Enter number of option that you want:" << endl;
+            int num_of_option;
+            cin >> num_of_option;
+            cin.ignore();
+            if (num_of_option == 2) {
+                add_user(firstDose, secondDose, waiting_list, user_map);
+            }
+            else if (num_of_option == 3) {
+                if_exist = false;
+            }
+
+
         }
 
     }
