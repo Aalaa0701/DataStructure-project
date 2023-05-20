@@ -263,7 +263,7 @@ DisplayUserClass::DisplayUserClass(QWidget* parent, string& username, vector<Use
 
 
 
-    connect(displayPage->Deleterecord, &QPushButton::clicked, this, [&]() {on_delete_clicked(firstDose,secondDose,waiting_list,user_map, username); });
+    connect(displayPage->Deleterecord, &QPushButton::clicked, this, [&]() {on_delete_clicked(firstDose,secondDose,waiting_list,user_map); });
     connect(displayPage->EditRecord, &QPushButton::clicked, this, [&]() {on_Edit_clicked( firstDose,secondDose,waiting_list,user_map,username); });
     connect(displayPage->logOut, &QPushButton::clicked, this, [&]() {on_logOut_clicked(firstDose, secondDose, waiting_list, user_map); });
 
@@ -278,7 +278,7 @@ DisplayUserClass::DisplayUserClass(QWidget* parent, string& username, vector<Use
     //delete usertemp;
 
 }
-void DisplayUserClass::on_delete_clicked( vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map, string& username) {
+void DisplayUserClass::on_delete_clicked( vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map) {
     string name = displayPage->Name->text().toStdString();
     string nationalID = displayPage->Id->text().toStdString();
     string password = displayPage->password->text().toStdString();
@@ -308,13 +308,15 @@ void DisplayUserClass::on_delete_clicked( vector<User>& firstDose, vector<User>&
     }
 
 
-    //displayPage->label_8->setText(QString::fromStdString(nationalID));
     User userTemp(name, nationalID, password, genderCharacter, age, governorate, isVaccinated, recievedBothDoses);
-    userTemp.deleteUser(firstDose, secondDose, waiting_list, nationalID, user_map);
+   // displayPage->label_8->setText(QString::fromStdString(to_string(user_map.size())));
+
+    userTemp.deleteUser(firstDose, secondDose, waiting_list, user_map, nationalID, vaccinationState);
 
     ProjectWithGUI* projectWithGUIObj = new ProjectWithGUI(this, firstDose, secondDose, waiting_list, user_map);
     projectWithGUIObj->show();
     hide();
+ 
 
 }
 void DisplayUserClass::on_Edit_clicked(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map, string& username) {
@@ -1004,11 +1006,7 @@ void User::EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue
                 if (vaccinationStateNew == "In waiting List") {
                     isVaccinated = false;
                     recievedBothDoses = false;
-                    while (!temp.empty()) {
-                        User temp1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
-                        waitingList.push(temp1);
-                        temp.pop();
-                    }
+                   
                 }
                 else if (vaccinationStateNew == "Received First Dose") {
                     isVaccinated = true;
@@ -1018,11 +1016,7 @@ void User::EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue
                     user_map[nationalID] = userTemp;
                     firstDose.push_back(userTemp);
                     waitingList.pop();
-                    while (!temp.empty()) {
-                        User temp1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
-                        waitingList.push(temp1);
-                        temp.pop();
-                    }
+                   
                 }
                 else if (vaccinationStateNew == "Recieved Both Doses") {
                     isVaccinated = true;
@@ -1032,15 +1026,16 @@ void User::EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue
                     user_map[nationalID] = userTemp;
                     secondDose.push_back(userTemp);
                     waitingList.pop();
-                    while (!temp.empty()) {
-                        User temp1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
-                        waitingList.push(temp1);
-                        temp.pop();
-                    }
+                    
                 }
                
             }
 
+        }
+        while (!temp.empty()) {
+            User temp1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
+            waitingList.push(temp1);
+            temp.pop();
         }
     }
     else if (vaccinationState == "Received First Dose") {
@@ -1131,12 +1126,50 @@ void User::EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue
 
 
 }
-void User::deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map) {
+void User::deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, map<string, User>& user_map, string nationalId, string vaccinationState) {
    
     User temporaryUser;
     queue<User> temp;
 
-    for (int i = 0; i < firstDose.size(); i++) {
+    if (vaccinationState == "In waiting List") {
+        while (!waitingList.empty()) {
+            if (waitingList.front().get_national_id() != nationalId) {
+                User tempUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
+                temp.push(tempUser);
+                waitingList.pop();
+            }
+            else if(waitingList.front().get_national_id() == nationalId) {
+                waitingList.pop();
+                user_map.erase(nationalId);
+
+            }
+        }
+        while (!temp.empty()) {
+            User tempUser1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
+            waitingList.push(tempUser1);
+            temp.pop();
+        }
+    }
+    else if (vaccinationState == "Received First Dose") {
+        for (int i = 0; i < firstDose.size(); i++) {
+            if (firstDose[i].get_national_id() == nationalId) {
+                firstDose.erase(firstDose.begin() + i);
+                user_map.erase(nationalId);
+                break;
+            }
+        }
+    }
+    else if (vaccinationState == "Recieved Both Doses") {
+        for (int i = 0; i < secondDose.size(); i++) {
+            if (secondDose[i].get_national_id() == nationalId) {
+                secondDose.erase(secondDose.begin() + i);
+                user_map.erase(nationalId);
+                break;
+            }
+        }
+    }
+
+   /* for (int i = 0; i < firstDose.size(); i++) {
         if (firstDose[i].get_national_id() == nationalId) {
             firstDose.erase(firstDose.begin() + i);
             user_map.erase(nationalId);
@@ -1165,7 +1198,7 @@ void User::deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<U
             temp.pop();
         }
     }
-    user_map.erase(nationalId);
+    user_map.erase(nationalId);*/
 
 
 

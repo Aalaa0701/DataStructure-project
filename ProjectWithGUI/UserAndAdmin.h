@@ -66,7 +66,7 @@ public:
     //Edit user data
     void DisplayInfoToBeEdited(map<string, User>& user_map, string nationalId, EditUser* editUserPage);
     void EditUserData(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, map<string, User>& user_map, EditUser* editUserPage, string vaccinationState);
-    void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, string nationalId, map<string, User>& user_map);
+    void deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, map<string, User>& user_map, string nationalId, string vaccintionState);
 
     // Setters
 

@@ -133,7 +133,7 @@ public:
     string vaccinationStateInUI;
 public slots:
     void on_Edit_clicked( vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map, string& username);
-    void on_delete_clicked(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map, string& username);
+    void on_delete_clicked(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map);
     void on_logOut_clicked(vector<User>& firstDose, vector<User>& secondDose, queue<User>& waiting_list, map<string, User>& user_map);
 private:
     DisplayUser* displayPage;
