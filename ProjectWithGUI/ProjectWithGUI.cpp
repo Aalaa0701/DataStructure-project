@@ -219,7 +219,7 @@ DeleteOptionsClass::DeleteOptionsClass(QWidget* parent, vector<User>& firstDose,
     deleteOptionsPage->setupUi(this);
 
     connect(deleteOptionsPage->DeleteOneRecord, &QPushButton::clicked, this, [&]() {on_deleteOneRecord_clicked(firstDose,secondDose, user_map,waiting_list); });
-    connect(deleteOptionsPage->Deleteallrecords, &QPushButton::clicked, this, [&]() {on_deleteAllRecords_clicked(user_map); });
+    connect(deleteOptionsPage->Deleteallrecords, &QPushButton::clicked, this, [&]() {on_deleteAllRecords_clicked(user_map,firstDose,secondDose,waiting_list); });
     connect(deleteOptionsPage->Return, &QPushButton::clicked, this, [&]() {on_return_clicked(firstDose,secondDose,user_map,waiting_list); });
 
 
@@ -231,11 +231,11 @@ void DeleteOptionsClass::on_deleteOneRecord_clicked(vector<User>& firstDose, vec
     hide();
 
 }
-void DeleteOptionsClass::on_deleteAllRecords_clicked(map<string, User>& user_map) {
+void DeleteOptionsClass::on_deleteAllRecords_clicked(map<string, User>& user_map, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList) {
     deleteOptionsPage->label->setText(QString::fromStdString(to_string(!user_map.empty())));
     if (user_map.empty()) {
         Admin adminTemp;
-        adminTemp.DeleteRecord(user_map, 1, "");
+        adminTemp.DeleteRecord(user_map,firstDose,secondDose,waitingList, 1, "");
     }
 
 }
@@ -391,14 +391,14 @@ EnterIDClass::~EnterIDClass() {
 EnterIdDeleteClass::EnterIdDeleteClass(QWidget* parent, vector<User>& firstDose, vector<User>& secondDose, map<string, User>& user_map, queue<User>& waiting_list) {
     enterIdDeletePage = new EnterIdDelete;
     enterIdDeletePage->setupUi(this);
-    connect(enterIdDeletePage->next, &QPushButton::clicked, this, [&]() {on_delete_btn_clicked(user_map); });
+    connect(enterIdDeletePage->next, &QPushButton::clicked, this, [&]() {on_delete_btn_clicked(user_map,firstDose,secondDose,waiting_list); });
     connect(enterIdDeletePage->Return, &QPushButton::clicked, this, [&]() {on_return_clicked(firstDose, secondDose, user_map, waiting_list); });
 
 }
-void EnterIdDeleteClass::on_delete_btn_clicked(map<string, User>& user_map) {
+void EnterIdDeleteClass::on_delete_btn_clicked(map<string, User>& user_map, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList) {
     string nationalID = enterIdDeletePage->NationalID->text().toStdString();
     Admin adminTemp;
-    adminTemp.DeleteRecord(user_map, 2, nationalID);
+    adminTemp.DeleteRecord(user_map,firstDose,secondDose, waitingList, 2, nationalID);
 }
 void EnterIdDeleteClass::on_return_clicked(vector<User>& firstDose, vector<User>& secondDose, map<string, User>& user_map, queue<User>& waiting_list) {
     AdminPageClass* adminPageObj = new AdminPageClass(this, firstDose, secondDose, user_map, waiting_list);
@@ -1467,7 +1467,7 @@ void Admin::ViewRecord(map<string, User> user_map, DisplayOneUser* displayOneUse
        }
     
 }
-void Admin::DeleteRecord(map<string, User>& user_map, int typeOfDeletion, string nationalID) {
+void Admin::DeleteRecord(map<string, User>& user_map, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, int typeOfDeletion, string nationalID) {
     if (user_map.empty())
         cout << "there is no records to delete.";
 
@@ -1476,6 +1476,11 @@ void Admin::DeleteRecord(map<string, User>& user_map, int typeOfDeletion, string
         {
         case 1:
             user_map.clear();
+            firstDose.clear();
+            secondDose.clear();
+            while (!waitingList.empty()) {
+                waitingList.pop();
+            }
             break;
         case 2:
             if (user_map.find(nationalID) != user_map.end()) {

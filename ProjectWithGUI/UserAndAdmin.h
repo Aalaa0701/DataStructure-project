@@ -84,7 +84,7 @@ public:
     //~Admin();
     void Statistics(vector<User>, vector<User>, queue<User>, map<string, User>, StatisticsPage* statisticsPage);
     void ViewRecord(map<string, User> user_map, DisplayOneUser* displayOneUser, NewViewUi* viewUsersPage, int typeofview, string nationalID);
-    void DeleteRecord(map<string, User>& user_map, int typeOfDeletion, string nationalID);
+    void DeleteRecord(map<string, User>& user_map, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList, int typeOfDeletion, string nationalID);
     void FilteredRecords(vector<User>firstDose, vector<User>secondDose, int numOfDose, NewViewUi* viewUsersPageFirstDose, NewViewUi* viewUsersPageSecondDose);
     void OrderedByAge(vector<User>firstDose, vector<User>secondDose, NewViewUi* viewUsersPage);
     void view_record(queue<User>waitingList, ViewWaitingList* viewWaitingListPage);

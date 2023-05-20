@@ -112,7 +112,7 @@ public:
 
 public slots:
     void on_deleteOneRecord_clicked(vector<User>& firstDose, vector<User>& secondDose, map<string, User>& user_map, queue<User>& waiting_list);
-    void on_deleteAllRecords_clicked(map<string, User>& user_map);
+    void on_deleteAllRecords_clicked(map<string, User>& user_map, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList);
     void on_return_clicked(vector<User>& firstDose, vector<User>& secondDose, map<string, User>& user_map, queue<User>& waiting_list);
 
 private:
@@ -167,7 +167,7 @@ public:
     void closeEvent(QCloseEvent* event, vector<User> firstDose, vector<User> secondDose, queue<User> waiting_list, map<string, User> user_map);
 
 public slots:
-    void on_delete_btn_clicked(map<string, User>& user_map);
+    void on_delete_btn_clicked(map<string, User>& user_map, vector<User>& firstDose, vector<User>& secondDose, queue<User>& waitingList);
     void on_return_clicked(vector<User>& firstDose, vector<User>& secondDose, map<string, User>& user_map, queue<User>& waiting_list);
 
 private:
