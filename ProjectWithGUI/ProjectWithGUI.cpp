@@ -97,7 +97,7 @@ AddUserClass::AddUserClass(QWidget* parent, vector<User>& firstDose, vector<User
     addUserPage->governorateCombo->addItem("Giza");
     addUserPage->governorateCombo->addItem("Matruh");
     addUserPage->governorateCombo->addItem("Asyut");
-    addUserPage->governorateCombo->addItem("South Sinai");
+    addUserPage->governorateCombo->addItem("Sinai");
     addUserPage->governorateCombo->addItem("Aswan");
     addUserPage->governorateCombo->addItem("Luxor");
     addUserPage->governorateCombo->addItem("Alexandria");
@@ -661,7 +661,7 @@ EditUserClass::EditUserClass(QWidget* parent, string username, string vaccinatio
     editUserPage->governorateCombo->addItem("Giza");
     editUserPage->governorateCombo->addItem("Matruh");
     editUserPage->governorateCombo->addItem("Asyut");
-    editUserPage->governorateCombo->addItem("South Sinai");
+    editUserPage->governorateCombo->addItem("Sinai");
     editUserPage->governorateCombo->addItem("Aswan");
     editUserPage->governorateCombo->addItem("Luxor");
     editUserPage->governorateCombo->addItem("Alexandria");
