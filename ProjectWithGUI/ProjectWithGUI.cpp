@@ -1516,8 +1516,47 @@ void Admin::DeleteRecord(map<string, User>& user_map, vector<User>& firstDose, v
             }
             break;
         case 2:
+           
             if (user_map.find(nationalID) != user_map.end()) {
-                user_map.erase(nationalID);
+                queue<User> temp;
+                if (user_map[nationalID].is_vaccinated() == false) {
+                    while (!waitingList.empty()) {
+                        if (waitingList.front().get_national_id() != nationalID) {
+                            User tempUser(waitingList.front().get_name(), waitingList.front().get_national_id(), waitingList.front().get_password(), waitingList.front().get_gender(), waitingList.front().get_age(), waitingList.front().get_governorate(), waitingList.front().is_vaccinated(), waitingList.front().has_received_both_doses());
+                            temp.push(tempUser);
+                            waitingList.pop();
+                        }
+                        else if (waitingList.front().get_national_id() == nationalID) {
+                            waitingList.pop();
+                            user_map.erase(nationalID);
+
+                        }
+                    }
+                    while (!temp.empty()) {
+                        User tempUser1(temp.front().get_name(), temp.front().get_national_id(), temp.front().get_password(), temp.front().get_gender(), temp.front().get_age(), temp.front().get_governorate(), temp.front().is_vaccinated(), temp.front().has_received_both_doses());
+                        waitingList.push(tempUser1);
+                        temp.pop();
+                    }
+                }
+                else if (user_map[nationalID].is_vaccinated() == true && user_map[nationalID].has_received_both_doses() == false) {
+                    for (int i = 0; i < firstDose.size(); i++) {
+                        if (firstDose[i].get_national_id() == nationalID) {
+                            firstDose.erase(firstDose.begin() + i);
+                            user_map.erase(nationalID);
+                            break;
+                        }
+                    }
+                }
+                else if (user_map[nationalID].is_vaccinated() == true && user_map[nationalID].has_received_both_doses() == true) {
+                    for (int i = 0; i < secondDose.size(); i++) {
+                        if (secondDose[i].get_national_id() == nationalID) {
+                            secondDose.erase(secondDose.begin() + i);
+                            user_map.erase(nationalID);
+                            break;
+                        }
+                    }
+                }
+               
             }
             
             break;
