@@ -1169,36 +1169,7 @@ void User::deleteUser(vector<User>& firstDose, vector<User>& secondDose, queue<U
         }
     }
 
-   /* for (int i = 0; i < firstDose.size(); i++) {
-        if (firstDose[i].get_national_id() == nationalId) {
-            firstDose.erase(firstDose.begin() + i);
-            user_map.erase(nationalId);
-            break;
-        }
-    }
-    for (int i = 0; i < secondDose.size(); i++) {
-        if (secondDose[i].get_national_id() == nationalId) {
-            secondDose.erase(secondDose.begin() + i);
-            user_map.erase(nationalId);
-            break;
-        }
-    }
-    while (!waitingList.empty()) {
-        if (waitingList.front().national_id != nationalId) {
-            User tempUser(waitingList.front().name, waitingList.front().national_id, waitingList.front().password, waitingList.front().gender, waitingList.front().age, waitingList.front().governorate, waitingList.front().vaccinated, waitingList.front().received_both_doses);
-            temp.push(tempUser);
-            waitingList.pop();
-        }
-        else {
-            waitingList.pop();
-        }
-        while (!temp.empty()) {
-            User tempUser1(temp.front().name, temp.front().national_id, temp.front().password, temp.front().gender, temp.front().age, temp.front().governorate, temp.front().vaccinated, temp.front().received_both_doses);
-            waitingList.push(tempUser1);
-            temp.pop();
-        }
-    }
-    user_map.erase(nationalId);*/
+   
 
 
 
@@ -1343,7 +1314,7 @@ void Admin::Statistics(vector<User>firstDose, vector<User>secondDose, queue<User
         else if (firstDose[i].get_governorate() == "Asyut") {
             countAsyut++;
         }
-        else if (firstDose[i].get_governorate() == "South Sinai") {
+        else if (firstDose[i].get_governorate() == "Sinai") {
             countSouth++;
         }
         else if (firstDose[i].get_governorate() == "Aswan") {
@@ -1370,7 +1341,7 @@ void Admin::Statistics(vector<User>firstDose, vector<User>secondDose, queue<User
         else if (secondDose[i].get_governorate() == "Asyut") {
             countAsyut++;
         }
-        else if (secondDose[i].get_governorate() == "South Sinai") {
+        else if (secondDose[i].get_governorate() == "Sinai") {
             countSouth++;
         }
         else if (secondDose[i].get_governorate() == "Aswan") {
